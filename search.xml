@@ -1,38 +1,356 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>python迭代协议</title>
-    <url>/2021/09/25/2021-9-25-python%E8%BF%AD%E4%BB%A3%E5%8D%8F%E8%AE%AE/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="Iterator-amp-Iterable"><a href="#Iterator-amp-Iterable" class="headerlink" title="Iterator &amp; Iterable"></a>Iterator &amp; Iterable</h3><p>迭代器是访问集合内元素的一种方式， 一般用来遍历数据<br>迭代器Iterator和以下标的访问方式不一样， 迭代器是不能返回的, 迭代器提供了一种惰性方式数据的方式.<br>list内部只实现了__iter__，而没有实现__next__,list是iterable，但不是迭代器。</p>
-<p>自己定义可迭代对象的时候，注意设计模式，不要把可迭代对象和迭代器混在一个class里，用单独的迭代器去管理index，设置__next__，在可迭代对象里只要__iter__返回一个迭代器就好</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">from collections.abc import Iterator</span><br><span class="line"></span><br><span class="line">class Company(object):</span><br><span class="line">    def __init__(self, employee_list):</span><br><span class="line">        self.employee = employee_list</span><br><span class="line"></span><br><span class="line">    def __iter__(self):</span><br><span class="line">        return MyItera·tor(self.employee)</span><br><span class="line"></span><br><span class="line">    # def __getitem__(self, item):</span><br><span class="line">    #     return self.employee[item]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class MyIterator(Iterator):</span><br><span class="line">    def __init__(self, employee_list):</span><br><span class="line">        self.iter_list = employee_list</span><br><span class="line">        self.index = 0</span><br><span class="line"></span><br><span class="line">    def __next__(self):</span><br><span class="line">        #真正返回迭代值的逻辑</span><br><span class="line">        try:</span><br><span class="line">            word = self.iter_list[self.index]</span><br><span class="line">        except IndexError:</span><br><span class="line">            raise StopIteration</span><br><span class="line">        self.index += 1</span><br><span class="line">        return word</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    company = Company([&quot;tom&quot;, &quot;bob&quot;, &quot;jane&quot;])</span><br><span class="line">    my_itor = iter(company)</span><br><span class="line">    # while True:</span><br><span class="line">    #     try:</span><br><span class="line">    #         print (next(my_itor))</span><br><span class="line">    #     except StopIteration:</span><br><span class="line">    #         pass</span><br><span class="line"></span><br><span class="line">    # next(my_itor)</span><br><span class="line">    for item in company:</span><br><span class="line">        print (item)</span><br></pre></td></tr></table></figure>]]></content>
+    <title>封闭2</title>
+    <url>/2010/05/03/2010-05-03-%E5%B0%81%E9%97%AD2/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>总是要经得起时间沉淀的东西才会用词语去描述，莫名的患了一种封闭的绝症，陌生人对我再好也难以对他推心置腹，总是开一些不痛不痒的玩笑敷衍过去。<br>一个人站在原野的中间，风就从我耳边吹过，好像当年的喃喃细语。随手抓了一把稻谷在手心，剥开才发现，它是没有心的。斜着头看了一眼自己的影子，傻傻的咧嘴对它一笑，可氤氲的空气中没有丝毫回应。<br>每个人都在不停寻觅，寻觅着心中的那个身影。长久以来充盈在心中的感情，却待到失去后才察觉到，察觉到曾经平凡的一点一滴。不经意间失去的，却要付出惊人的代价。即使焦急地拼命伸出手去，却只如风一般从指间流走。看似近在咫尺，其实遥不可及。</p>
+]]></content>
       <categories>
-        <category>python</category>
+        <category>personal</category>
       </categories>
       <tags>
-        <tag>python</tag>
+        <tag>日记</tag>
       </tags>
   </entry>
   <entry>
-    <title>python元编程</title>
-    <url>/2021/09/23/2021-9-23-python%E5%85%83%E7%BC%96%E7%A8%8B/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="getattr"><a href="#getattr" class="headerlink" title="getattr"></a><strong>getattr</strong></h3><p>‘<strong>getattr</strong>‘ 就是在查找不到属性的时候调用</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#__getattr__, __getattribute__</span><br><span class="line"></span><br><span class="line">from datetime import date</span><br><span class="line">class User:</span><br><span class="line">    def __init__(self,info=&#123;&#125;):</span><br><span class="line">        self.info = info</span><br><span class="line"></span><br><span class="line">    def __getattr__(self, item):</span><br><span class="line">        return self.info[item]</span><br><span class="line"></span><br><span class="line">    # def __getattribute__(self, item):</span><br><span class="line">    #     return &quot;bobby&quot;</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    user = User(info=&#123;&quot;company_name&quot;:&quot;imooc&quot;, &quot;name&quot;:&quot;bobby&quot;&#125;)</span><br><span class="line">    print(user.test)</span><br></pre></td></tr></table></figure>
-
-<h3 id="getattribute"><a href="#getattribute" class="headerlink" title="getattribute"></a><strong>getattribute</strong></h3><p>所有属性访问入口，控制整个类实例过程。</p>
-<h3 id="descriptor"><a href="#descriptor" class="headerlink" title="descriptor"></a>descriptor</h3><p>执行顺序：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">如果user是某个类的实例，那么user.age（以及等价的getattr(user,’age’)）</span><br><span class="line">首先调用__getattribute__。如果类定义了__getattr__方法，</span><br><span class="line">那么在__getattribute__抛出 AttributeError 的时候就会调用到__getattr__，</span><br><span class="line">而对于描述符(__get__）的调用，则是发生在__getattribute__内部的。</span><br><span class="line">user = User(), 那么user.age 顺序如下：</span><br><span class="line"></span><br><span class="line">（1）如果“age”是出现在User或其基类的__dict__中， 且age是data descriptor， 那么调用其__get__方法, 否则</span><br><span class="line"></span><br><span class="line">（2）如果“age”出现在user的__dict__中， 那么直接返回 obj.__dict__[‘age’]， 否则</span><br><span class="line"></span><br><span class="line">（3）如果“age”出现在User或其基类的__dict__中</span><br><span class="line"></span><br><span class="line">（3.1）如果age是non-data descriptor，那么调用其__get__方法， 否则</span><br><span class="line"></span><br><span class="line">（3.2）返回 __dict__[‘age’]</span><br><span class="line"></span><br><span class="line">（4）如果User有__getattr__方法，调用__getattr__方法，否则</span><br><span class="line"></span><br><span class="line">（5）抛出AttributeError</span><br></pre></td></tr></table></figure>
-
-<h3 id="new-vs-init"><a href="#new-vs-init" class="headerlink" title="new vs init"></a><strong>new</strong> vs <strong>init</strong></h3><p>new 是用来控制对象的生成过程， 在对象生成之前<br>init是用来完善对象的</p>
-<h3 id="type动态创建类"><a href="#type动态创建类" class="headerlink" title="type动态创建类"></a>type动态创建类</h3><p>type： 创建类的类<br>第一个参数，继承自哪里，若继承obj则（）<br>第二个参数，传入的方法或者属性。<br>User &#x3D; type(“User”, (), {})</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">class MetaClass(type):</span><br><span class="line">    def __new__(cls, *args, **kwargs):</span><br><span class="line">        return super().__new__(cls, *args, **kwargs)</span><br><span class="line"></span><br><span class="line">from collections.abc import *</span><br><span class="line"></span><br><span class="line">#什么是元类， 元类是创建类的类 对象&lt;-class(对象)&lt;-type</span><br><span class="line">class User(metaclass=MetaClass):</span><br><span class="line">    def __init__(self, name):</span><br><span class="line">        self.name = name</span><br><span class="line">    def __str__(self):</span><br><span class="line">        return &quot;user&quot;</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    User = type(&quot;User&quot;, (BaseClass, ), &#123;&quot;name&quot;:&quot;user&quot;, &quot;say&quot;:say&#125;)</span><br></pre></td></tr></table></figure>
-
-<h3 id="simple-orm"><a href="#simple-orm" class="headerlink" title="simple orm"></a>simple orm</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 需求</span><br><span class="line">import numbers</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class Field:</span><br><span class="line">    pass</span><br><span class="line"></span><br><span class="line">class IntField(Field):</span><br><span class="line">    # 数据描述符</span><br><span class="line">    def __init__(self, db_column, min_value=None, max_value=None):</span><br><span class="line">        self._value = None</span><br><span class="line">        self.min_value = min_value</span><br><span class="line">        self.max_value = max_value</span><br><span class="line">        self.db_column = db_column</span><br><span class="line">        if min_value is not None:</span><br><span class="line">            if not isinstance(min_value, numbers.Integral):</span><br><span class="line">                raise ValueError(&quot;min_value must be int&quot;)</span><br><span class="line">            elif min_value &lt; 0:</span><br><span class="line">                raise ValueError(&quot;min_value must be positive int&quot;)</span><br><span class="line">        if max_value is not None:</span><br><span class="line">            if not isinstance(max_value, numbers.Integral):</span><br><span class="line">                raise ValueError(&quot;max_value must be int&quot;)</span><br><span class="line">            elif max_value &lt; 0:</span><br><span class="line">                raise ValueError(&quot;max_value must be positive int&quot;)</span><br><span class="line">        if min_value is not None and max_value is not None:</span><br><span class="line">            if min_value &gt; max_value:</span><br><span class="line">                raise ValueError(&quot;min_value must be smaller than max_value&quot;)</span><br><span class="line"></span><br><span class="line">    def __get__(self, instance, owner):</span><br><span class="line">        return self._value</span><br><span class="line"></span><br><span class="line">    def __set__(self, instance, value):</span><br><span class="line">        if not isinstance(value, numbers.Integral):</span><br><span class="line">            raise ValueError(&quot;int value need&quot;)</span><br><span class="line">        if value &lt; self.min_value or value &gt; self.max_value:</span><br><span class="line">            raise ValueError(&quot;value must between min_value and max_value&quot;)</span><br><span class="line">        self._value = value</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class CharField(Field):</span><br><span class="line">    def __init__(self, db_column, max_length=None):</span><br><span class="line">        self._value = None</span><br><span class="line">        self.db_column = db_column</span><br><span class="line">        if max_length is None:</span><br><span class="line">            raise ValueError(&quot;you must spcify max_lenth for charfiled&quot;)</span><br><span class="line">        self.max_length = max_length</span><br><span class="line"></span><br><span class="line">    def __get__(self, instance, owner):</span><br><span class="line">        return self._value</span><br><span class="line"></span><br><span class="line">    def __set__(self, instance, value):</span><br><span class="line">        if not isinstance(value, str):</span><br><span class="line">            raise ValueError(&quot;string value need&quot;)</span><br><span class="line">        if len(value) &gt; self.max_length:</span><br><span class="line">            raise ValueError(&quot;value len excess len of max_length&quot;)</span><br><span class="line">        self._value = value</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class ModelMetaClass(type):</span><br><span class="line">    def __new__(cls, name, bases, attrs, **kwargs):</span><br><span class="line">        if name == &quot;BaseModel&quot;:</span><br><span class="line">            return super().__new__(cls, name, bases, attrs, **kwargs)</span><br><span class="line">        fields = &#123;&#125;</span><br><span class="line">        for key, value in attrs.items():</span><br><span class="line">            if isinstance(value, Field):</span><br><span class="line">                fields[key] = value</span><br><span class="line">        attrs_meta = attrs.get(&quot;Meta&quot;, None)</span><br><span class="line">        _meta = &#123;&#125;</span><br><span class="line">        db_table = name.lower()</span><br><span class="line">        if attrs_meta is not None:</span><br><span class="line">            table = getattr(attrs_meta, &quot;db_table&quot;, None)</span><br><span class="line">            if table is not None:</span><br><span class="line">                db_table = table</span><br><span class="line">        _meta[&quot;db_table&quot;] = db_table</span><br><span class="line">        attrs[&quot;_meta&quot;] = _meta</span><br><span class="line">        attrs[&quot;fields&quot;] = fields</span><br><span class="line">        del attrs[&quot;Meta&quot;]</span><br><span class="line">        return super().__new__(cls, name, bases, attrs, **kwargs)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class BaseModel(metaclass=ModelMetaClass):</span><br><span class="line">    def __init__(self, *args, **kwargs):</span><br><span class="line">        for key, value in kwargs.items():</span><br><span class="line">            setattr(self, key, value)</span><br><span class="line">        return super().__init__()</span><br><span class="line"></span><br><span class="line">    def save(self):</span><br><span class="line">        fields = []</span><br><span class="line">        values = []</span><br><span class="line">        for key, value in self.fields.items():</span><br><span class="line">            db_column = value.db_column</span><br><span class="line">            if db_column is None:</span><br><span class="line">                db_column = key.lower()</span><br><span class="line">            fields.append(db_column)</span><br><span class="line">            value = getattr(self, key)</span><br><span class="line">            values.append(str(value))</span><br><span class="line"></span><br><span class="line">        sql = &quot;insert &#123;db_table&#125;(&#123;fields&#125;) value(&#123;values&#125;)&quot;.format(db_table=self._meta[&quot;db_table&quot;],</span><br><span class="line">                                                                   fields=&quot;,&quot;.join(fields), values=&quot;,&quot;.join(values))</span><br><span class="line">        pass</span><br><span class="line"></span><br><span class="line">class User(BaseModel):</span><br><span class="line">    name = CharField(db_column=&quot;name&quot;, max_length=10)</span><br><span class="line">    age = IntField(db_column=&quot;age&quot;, min_value=1, max_value=100)</span><br><span class="line"></span><br><span class="line">    class Meta:</span><br><span class="line">        db_table = &quot;user&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    user = User(name=&quot;bobby&quot;, age=28)</span><br><span class="line">    # user.name = &quot;bobby&quot;</span><br><span class="line">    # user.age = 28</span><br><span class="line">    user.save()</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+    <title>矛盾</title>
+    <url>/2010/05/10/2010-05-10-%E7%9F%9B%E7%9B%BE/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>做志愿者，让我接触了太多太多可爱的孩子，他们的一颦一笑和对未来的那种憧憬懵懂让我自惭形秽。<br>身体的残疾并不能掩盖他们心灵的单纯，最让我感动的那位姓张的女孩，第一天我看见她左腿没了，第二天分开托着假肢颤颤巍巍的站起来抱了我一下的时候，我清清楚楚的感觉到心中最柔软的地方狠狠的痛了一下。她就是下凡的天使，不是么。<br>多少年前，我不是也和他们一样单纯幸福着么。<br>过去之人不可追、现在之心不可安、将来之事不可知，这是万古之愁，不会变的。</p>
+<p>大学<br>太多的自由<br>可以去做自己想做的事情<br>可是<br>又没有心情 没有想见的人陪伴去做<br>这就是矛盾<br>这样不如 不要这些自由<br>要努力去爱<br>又怎么可能 有自由<br>要努力爱<br>又怎么可能 留退路<br>人一生要走过多少人，才能看清真正的缘分</p>
+]]></content>
       <categories>
-        <category>python</category>
+        <category>personal</category>
       </categories>
       <tags>
-        <tag>python 元编程</tag>
+        <tag>日记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>性格测试</title>
+    <url>/2012/08/03/2012-08-03-%E6%80%A7%E6%A0%BC%E6%B5%8B%E8%AF%95/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>#ISFJ 照顾者型――值得信赖和依靠</p>
+<p>一、你的 MBTI 图形</p>
+<p>MBTI 倾向示意图(类型：ISFJ 总倾向：54)<br>外向（E）</p>
+<p>（I）内向<br>实感（S）</p>
+<p>（N）直觉<br>思考（T）</p>
+<p>（F）情感<br>判断（J）</p>
+<p>（P）知觉</p>
+<p>?倾向示意图表示四个维度分别的倾向程度。从中间往两侧看，绿色指示条对应下面坐标的哪个区间。<br>?本报告地址不会长期有效，请复制报告内容到本地或自己的博客。</p>
+<p>二、基本描述</p>
+<p>才储分析：您的性格类型倾向为“ ISFJ ”(内向 实感 情感 判断 倾向度： I100 S57 F71 J71 不假思索指数：13)</p>
+<p>沉静，友善，有责任感和谨慎。能坚定不移地承担责任。做事贯彻始终、不辞劳苦和准确无误。忠诚，替人着想，细心；往往记着他所重视的人的种种微小事情，关心别人的感受。努力创造一个有秩序、和谐的工作和家居 环境。</p>
+<p>ISFJ 型的人忠诚、有奉献精神和同情心，理解别人的感受。他们意志清醒而有责任心，乐于为人所需。 ISFJ 型的人十分务实，他们喜欢平和谦逊的人。他们喜欢利用大量的事实情况，对于细节则有很强的记力。他们耐心地 对待任务的整个阶段，喜欢事情能够清晰明确。 ISFJ 型的人具有强烈的职业道德，所以他们如果知道自己的行为真正有用时，会对需要完成之事承担责任。他们准确系统地完成任务。他们具有传统的价值观，十分保守。他 们利用符合实际的判断标准做决定，通过出色的注重实际的态度增加了稳定性。 ISFJ 型的人平和谦虚、勤奋严肃。他们温和、圆通，支持朋友和同伴。他们乐于协助别人，喜欢实际可行地帮助他人。他们利用个人热情与人 交往，在困难中与他人和睦相处。ISFJ 型的人不喜欢表达个人情感，但实际上对于大多数的情况和事件都具有强烈的个人反应。他们关心、保护朋友，愿意为朋友献身，他们有为他人服务的意识，愿意完成他们的责任和义务。</p>
+<p>您适合的领域有：领域特征不明显，较相关的如：医护领域、消费类商业、服务业领域</p>
+<p>您适合的职业有：<br>・ 内科医生<br>・ 营养师<br>・ 图书&#x2F;档案管理员<br>・ 室内装潢设计师<br>・ 顾客服务代表<br>・ 记账员<br>・ 特殊教育教师<br>・ 酒店管理<br>・ 人事管理人员<br>・ 电脑操作员<br>・ 信贷顾问<br>・ 零售业主<br>・ 房地产代理或经纪人<br>・ 艺术人员<br>・ 商品规划师<br>・ 语言病理学者<br>・ 审计师<br>・ 会计<br>・ 财务经理<br>・ 办公室行政管理<br>・ 后勤和供应管理<br>・ 中层经理<br>・ 公务（法律、税务）执行人员<br>・ 银行信贷员<br>・ 成本估价师<br>・ 保险精算师<br>・ 税务经纪人<br>・ 税务检查员<br>・ 机械、电气工程师<br>・ 计算机程序员<br>・ 数据库管理员<br>・ 地质<br>・ 气象学家<br>・ 法律研究者<br>・ 律师<br>・ 外科医生<br>・ 药剂师<br>・ 实验室技术人员<br>・ 牙科医生<br>・ 医学研究员</p>
+<p>三、气质类型</p>
+<p>根据大卫.凯尔西（David Keirsey）气质与性情理论，你属于“传统主义者”，下面是对“传统主义者”的描述：</p>
+<p>“传统主义者”相信事实、已证实的数据、过去的经验和“五官”所带给他们的信息，喜欢有结构有条理的世界，喜欢做决定，是一 种既现实又有明确目标的人。</p>
+<p>“传统主义者”是最传统的一类人，他们坚定、可靠、可信。他们重视法律、秩序、安全、得体、规则和本分。他们被一种 为社会服务的动机所驱使。他们尊重权威、等级制度和权力，而且一般具有保守的价值观。他们很有责任感，而且经常努力去做正确 的事情，这使他们可以信赖和依靠。</p>
+<p>“传统主义者”需要有归属感，需要服务于别人，需要做正确的事情。他们注重安稳、秩序、合作、前后一致和可靠，而且他们严肃 认真，工作努力。“传统主义者”在工作中对自己要求十分严格，而且他们希望别人也是如此。“传统主义者”喜欢那些与他们一样 具有奉献精神、尊重权威和尽自己的本分的同事。</p>
+<p>“传统主义者”往往是组织机构的主要支持者，不论他们是在领导层还是处于被领导的位置上。他们最常扮演的角色就是“稳定器” ――传统和现状的维护者。 大多数“传统主义者”（不论他们是属于什么判断偏好）最喜欢的是组织结构稳定、清楚、目标明确 的岗位，不喜欢处在不断变化和杂乱状况之中的职位或组织。</p>
+<p>“传统主义者”包括思维型传统主义者和情感型传统主义者，这两种传统主义者之间又有很明显的不同。情感型传统主义者常常不象 思维型传统主义者那样明显地表现出传统主义者的一般特征。在做决定时，情感型传统主义者把与别人的关系和人放在首要位置，本 能地努力寻求与他人更和睦的关系，同时不断寻找着使他们能够通过有形的方式帮助他人的机会。――――而你正属于情感型传统主义者。</p>
+<p>对于不同的性格类型而言，没有“好”与“坏”之分，每一个人都是一个独一无二的个体，都有其特别的优势和劣势，但问题的关键 在于如何认识这些优势和劣势。基于 MBTI 模型职业规划的核心法则是：“扬长避短”，学会了这一点将会影响到你的成败及你对工作的正确选择。</p>
+<p>对你的总体描述</p>
+<ol>
+<li>实际，有条理，认真仔细。</li>
+<li>注重规则、政策、契约、例行习惯和时间要求。</li>
+<li>一旦他们承诺一件事情，总会坚持完成它。</li>
+<li>在跟进、规范方面做得很好。</li>
+<li>以第一次和每一次都做了正确的事情为荣。</li>
+<li>对需要注意的事情有敏锐的洞察力。</li>
+<li>善于尽可能有效地利用现有资源完成工作。</li>
+</ol>
+<p>你潜在的弱点</p>
+<ol>
+<li>容易只看到事情有黑和白两种情况，而看不到中间的灰色地带。</li>
+<li>可能不能很快地做出改变和适应。</li>
+<li>有些此类型成员不擅长变通、缺乏想象力。</li>
+</ol>
+<p>四、优势与劣势</p>
+<p>ISFJ 的特质： 照顾者型――值得信赖和依靠</p>
+<p>优势：</p>
+<p>你具有友善、负责、认真、忠于职守的特点，只要你认为应该做的事，不管有多少麻烦都要去做，但却厌烦去做你认为毫无意义的事情。</p>
+<p>你务实、实事求是，追求具体和明确的事情，喜欢做实际的考虑。善于单独思考、收集和考察丰富的外在信息。不喜欢逻辑的思考和理论的应用，拥有对细节很强的记忆力，诸如声音的音色或面部表情。</p>
+<p>你与人交往时较为敏感，谦逊而少言、善良、有同情心，喜欢关心他人并提供实际的帮助，你们对朋友忠实友好，有奉献精神。虽然在很多情况下你有很强烈的反应，但通常不愿意将个人情感表现出来。</p>
+<p>你做事有很强的原则性，尊重约定，维护传统。工作时严谨而有条理，愿意承担责任，你依据明晰的评估和收集的信息来做决定，充分发挥自己客观的判断和敏锐的洞察力。</p>
+<p>劣势：</p>
+<p>你有高度的责任心，会陷入日常事务的细节中去，以至于没完没了的工作。每件事情你都会从头做到尾，这总是让你过度劳累，压力很大时，你会过度紧张，甚至产生消极情绪。</p>
+<p>由于你的现实、细致，有时容易忽略事情的全局和发展变化趋势，难以预见存在的可能性。建议你周到考虑解决问题的不同方法和可能性，需要增强对远景的关注。</p>
+<p>你总是替别人着想，以至于让人感觉“关心过度”，你需要学会给别人空间。在工作中，你过多的承受和忍耐，不太习惯表达，却将情绪在家庭和生活中发泄出来。</p>
+<p>你不停地制订计划并保证完成，以致于经常花费更多的时间和投入更多的精力来完成工作，建议你给自己安排必要的娱乐和放松的活动，不要总是“低头拉车”，需要考虑“抬头看路”。</p>
+<p>哪一个更加重要 ? 是得到启迪，还是在得到启迪之前得到启迪；是赚一百万美元，还是努力享受生活，即使不可能赚到一百万美元；是取得成功，还是在你努力走想成功的过程中发现的一些意义。</p>
+<p>―――― 铃木俊隆</p>
+]]></content>
+      <categories>
+        <category>personal</category>
+      </categories>
+      <tags>
+        <tag>日记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>bye_bye</title>
+    <url>/2013/03/10/2013-03-10-Bye%20Bye/</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="97359e1a337821e70992c144a2b5c375be7711628484f68c4dd2d54674b6d9bf">4a7408545c00d6cdacf7a599bcddb9e9ad9df8781f0b6f371b7519cf1ba60458a5f75a83d1bd8e98e8d359f5db617afb0483ec12ce19d495ef000d680406e7410ac6073615cdd280e2b673302d16a1194058f9ef2718deff49679056fe86f49f8bf03263e52d0f60cec3f5a5544c1729bc84aac535b261b0de77a9393eef4088a123b0a5780d707ac6fa7bf63d97cc764e304ff99c03d469080cbf2a851751ab06193f847bc0bc76f943f0fd765e2f8ce107ca265cca1548e8b283ae109c62e267347091927813e2cbfd71dea5f29a05b0d34551175731c4083800b54cbfa5503efde8aed23713ec0602f7bc1d4244a91eb9d7b2aa5aef853f23b8c11ff734ed9ad0cb19437818b13e330906f60be08dce31dc03af6ab98d33e60cf2faaa174fb1bd1d4d7f71609151e1162e0d5dcc819099909ada98a5f578e3adf9a8a2c5b1c0699608c7499b5bc35a535ba416033ae4c88eaab81eb27eeaeaf600a4893286976004f56ba08550939e96b415549e3ecdc00d4df08bce53b5a3de25a5f2478fc07d1fb8c5bbaff04d0453d1a8dd59d9f7c6e87da3e7bf18d781ff84eca5ca698d8a25a71b36211a00a1cd6f3f5df0975a8a428cb2e6f38d70dd093bacef844efc93bb7a1d2c5cc7702140a975d8b15ad2db743dc31143b0f41b168ce7968f9ab760cbb9da88c3e25358cb9c2da178f1239812658f45b007a91cd9e70cec028977cbba5ecd85ce8595e0830e9815ee6df8369f276327a8e80b740ef1bbe29b8f9c1954e0b83a76c58ce12fc04d1ef4021e05add85cf3351f1409e005cf5f14570b9aa529db0ac4ac700da4bd3e53b1028b050f4baacf227bd53509c9947ecf0c62ab494cc2da194743cb23baa64f3f469852c6a1dbd1ba0f6008b84f9bbba79fbeb371c734e0e56724d055ed86f886b6a4ca253ed6ce9f2ecfb69b88c8efba8d82f3f854105c84f6a3c3215f9e840bca9535b534d00c31c2a522ed552cd348020ecce886de94bbd36d59442b8ed4e246cc45469409a3397608156eb53bce926be8921cd82251b96a50b19f7d725e11ce797ae8e6acd7ce8cd63edc198d6a72e4f9b5ed690b90a3eac58209d8990739fe45c78c5ac13a43d1eb79bb352272feded4742784f270c867644d49a19e688dbc63ea7643f07342391354828f7d23b0f251f7b9c129b8aaa919ea603bf800ea334b72b25b2e59536c1a37e815ad62800626d53b7525fa5983384396446f2ecbc15af970bf6e50a6fadad906ba19910d239bacb008769a2fb1f6d00db360515c52bdd497b8db02669749e058b0bb24b5dd2d9b5cfd32bb43a870e49707c3f5ae62bc0e5bcd401660daa5456cb828f0e7d1eb31dcf63d0df4dd5981b80e75b1382af8df8c5a154059d007eb3db49c934f156f2a70b3aa26770f1285ab2fa1cfa2ad1622aa81930a715c342d96ce198b58b1135221bd124e9d6ce69a5bebb4412e506d53fce252bcd10a96c1ef0f04797aaab68147d68a1709f84189598c00c676fb9b378281835cf0ee3fca9af5160e219110de2de1caa4be2af8309926dbd6fe1997b641726dc98b1a8f15a295b7ec96fd80bcfd763241d6c01c3abfffa4f9c3b799b562e40bb502d0f1a6486012991d14253c3142bd525de59690f782a74bd6fcace5c40bd7feb6e4e65beed3cd24c7cfb73989e5f0d0a1ab4faf97918c493866351739f3947baa8dedad384e901ab1429769c58c61c87e3fba18a9a7f1433fbaf0a348b306f1c917f7666de6c520c13cfcce7b2d97d7142edde2a720a796092f075effa3fd41e95a5b6b0b199f055c923142cd34f909857556cc515aa7a021a2f3093b35de6a3a5424610b56c1c08dbd963ada5158e3c3acbbe1c2e460f0d284d34747af450fccd57011f1b141b99bdf546511e28dfe4dd78099a70f017758a9e0209d209b4edf3c58d2acdd1f20e7b060b5b2d017198911f47710d6c0267e8a0e7405abe3e07d60f514ea3b5a13fc2627eeeb826ea9367506579d1c5fc6c365c8cb3a1e7729601612d335149b17782d2e31adfdedf97affbc92d07daca8d13323a9c0c685d0f33f1e57ed8451a608a95491a9101290bf5a0506f299f5000857fa2870aed1aa357eb175f9779ca472ff2d5ce162ce6f8df409e115ba079e8164e93ef1d80fea4c9edee0f534cbf667bb48f45fefad07c58ceffd7f0730942ff1b7426e8e1b8b2b6b81483ba2ff23e4ddb78d9896e0c64795515608f73e45e6fb3c4c93d0c275c014107622854bf8ac7dbc0a748f683e2d0e73074e1658c643d065f4bd2a327acc8bfbd1712e8b4e63a8f1d8202d7ab628ad28b9239e7d1659cae6b24b175ec32269327afc23c72acab8b46a1736c4e9c2f8d84035b7e8357b5dc6b026b71cabf8845bb1791f8cc20ff1f83304d5fe0a9879c9d67772e2b6ca563c9e4d8637e46e04e44d0118db3f4f66eb305da145a450d12df594d215d2b933bc8549b6cc5f268db2de17be6ddc126b371c837f4344840576ad806d1974fdba5e4177ccd0a7bd4aed46b1816a01972fa1bbeb04b454ea7573f60694cbae2f72755958b4c8cb4b00365b0f2c66c06b6d378d25908812a0e1647740c5cadddd2516f34c442c309e9718b904111a829a59919b71f97ce23f8a398969b7bd7fa17a58ba25d9d883b4b669e6a25a5a6c2dc8ffd13116962471a5ca2f0a2469ef490c01a0788c752e538558e7db7f548997f9a5ace1c82846dab7bebb3292136620993c2c65a6923735123f24ebc8699775a88811f96f61666f68debfb7fadadd55526b40ab2c853ef1272b0ce8d7a35fb0ebeb3041e3655b0beb4733fd4f4acf11c398d3a7f1a9eeb919c9877428bc7acb1a7bc61d10dd6f9faff0050bc74678ccfebb1bd953d3d9b73c51a5932606078d183aad12ac088c18d84842b5fb782c38be636a7335c275c94c42c47ff0f639cef977cdaa3874fe527f32e809caf8703d4fd80dd50d38030270edb5dc943e5f0e6ec544589b5b8c7fd519e31a9de3bb0a190bee16ec92ac799f8b03fd62eaa54591363aeab6d9042e8c7dd4465f0856a24f76c8e0ad3f34deeb3bf926d7f5da85d98a37f1890db7d7bfc950e2f6474f018e4bc94350eb9416144f57f6873a61c26015743c82fd93dacf1a79a744d065e74b4fd8564d8647efccffcc42978f748eb875c14baf3677e2d205258924318a98a9f940e5e8fb1fabaa199195826beddd170d2c56bfd4b4beeec3c7ea52ecf095bc467c23374128925578bedf5cbd79b443718d779cf7fa101eef821d4a34a01e976d4afcf29b86ae71fa7225353ba72798700bd991a24fa9e4df95341bdc5d36109d8320a38d0556c2b3aca09255793017170e601b8d25e3e9bc73dbae8f5910e3bcb0a22920477a7e45eb75691f56cb2deca506671bb3747c0aad1828e455a9f3d278d386f246a733ffc9f1a9e377fac4b671c96083c14fcfce74fdf0b3f6d40b25d05fcf1c2a922e069e0fdfb1e980e6b741f847598fa13d9c75821b511ed4c8b0a8582e0b6ab0f364eb8e9847e5b2055384faa23cd8c1b7ec0b247e18769aa2adab802265e5fead02948240ee6041db44bafe9d22ff182b726adc4259b249a3</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      <categories>
+        <category>personal</category>
+      </categories>
+      <tags>
+        <tag>日记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>考试</title>
+    <url>/2014/07/01/2014-07-01-%E8%80%83%E8%AF%95/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>不懂为什么大家都那么努力去学习考试，明明感觉在中国这个社会是不起什么作用的，Google，FB 那些互联网公司似乎一到中国就变得水土不符。J 说比考试自己永远比不过我们，但是他能利用那些考试好的人的心理，既懂西方那一套，也了解中国的国情，这就是他自己的优势。做人关键在于选择和定位，不能拘泥于待在一个地方，也不必把梦想当成一套房子那么 cheap。有本领做自己喜欢的事是最重要的，年轻应该去每个地方看看，赚钱只是途径而不是目的，他觉得某些东西不合理因为已经扭曲了人性，纽约香港这样繁华的多的地方反而更尊重各人的爱好和生活，国人却所有人都沉浸在一种狂热的金钱崇拜和成功学炒作中，反人性的东西真的最终能成功么，really doubt it. 索性泡吧，夜店，为何需要感性，如若不关自己的事为什么要去浪费自己的时间关心别人，年轻人给自己背负太多的感情包袱就是自讨苦吃。</p>
+<ul>
+<li>最后一滴泪 别让他落下</li>
+<li>天涯如此大 我们要去哪</li>
+<li>你说你也渴望一个温暖的家</li>
+<li>我说我也渴望那个梦中的她</li>
+<li>最后一杯酒 我们干了吧</li>
+<li>天就要亮了 你别再哭了</li>
+<li>我们都曾经年少轻狂</li>
+<li>我们都曾经流浪四方</li>
+<li>如果回去十年 那个年幼的我</li>
+<li>如果回去十年 会不会遇见</li>
+<li>如果再过十年 我们会走多远</li>
+<li>如果再过十年 会不会分别</li>
+<li>最后一滴泪 别让他落下</li>
+<li>天涯如此大 我们要去哪</li>
+<li>你说你也渴望一个温暖的家</li>
+<li>我说我也渴望那个梦中的她</li>
+<li>最后一杯酒 我们干了吧</li>
+<li>天就要亮了 你别再哭了</li>
+<li>我们都曾经年少轻狂</li>
+<li>我们都曾经流浪四方</li>
+<li>如果回去十年 那个年幼的我</li>
+<li>如果回去十年 会不会遇见</li>
+<li>如果再过十年 我们会走多远</li>
+<li>如果再过十年 会不会分别</li>
+<li>如果回去十年 那个年幼的我</li>
+<li>如果回去十年 会不会遇见</li>
+<li>如果再过十年 我们会走多远</li>
+<li>如果再过十年 会不会分别</li>
+</ul>
+]]></content>
+      <categories>
+        <category>personal</category>
+      </categories>
+      <tags>
+        <tag>日记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MARKDOWN学习笔记</title>
+    <url>/2014/09/05/2014-09-05-MARKDOWN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="Markdown-的基本格式"><a href="#Markdown-的基本格式" class="headerlink" title="Markdown 的基本格式"></a>Markdown 的基本格式</h3><p>文字前加#号代表后面的文字的字号会变大，显示为标题，#号数量越多，代表字号越小，标题层级越低，而单独一个#就是最高一级的标题。</p>
+<p>特别注意#号和文字之间一定要有一个空格。</p>
+<h3 id="段落"><a href="#段落" class="headerlink" title="段落"></a>段落</h3><p>当你写完一段文字，如何开始下一段呢？仅仅回车换行一次是不管用的，需要多一次回车，总共两次回车换行才行，也就是说需要空出一行来。</p>
+<p>因为 Markdown 中用一个或一个以上的空行来分割段落，这里的空行是指真的空出了一行，就是写完一段后需要两次回车。</p>
+<h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3><p>只需要在列表的每一项前面加<em>号，</em>号和文字之间注意要留空格。</p>
+<p>如果想要有数字序号的列表呢，只要把*改成相应的 1.，2.等就好了，注意数字后面要有.</p>
+<h3 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h3><p>有时想要引用别人的一段话，只要在引用的文字前加&gt;，连续多行添加&gt;了的文字，将变成一个引用的区块。</p>
+<h3 id="链接和图片"><a href="#链接和图片" class="headerlink" title="链接和图片"></a>链接和图片</h3><p>在 Markdown 中，插入链接不需要其他按钮，你只需要使用 <a href="%E9%93%BE%E6%8E%A5%E5%9C%B0%E5%9D%80"></a> 这样的语法即可，例如：</p>
+<pre><code>[安东尼](http://renshou753.github.io)
+</code></pre>
+<p>在 Markdown 中，插入图片不需要其他按钮，你只需要使用 感叹号+<a href="%E5%9B%BE%E7%89%87%E5%9C%B0%E5%9D%80"></a> 这样的语法即可，例如：</p>
+<pre><code>![](http://)
+</code></pre>
+<h3 id="粗体斜体"><a href="#粗体斜体" class="headerlink" title="粗体斜体"></a>粗体斜体</h3><p>Markdown 的粗体和斜体也非常简单，用两个 _ 包含一段文本就是粗体的语法，用一个 _ 包含一段文本就是斜体的语法。</p>
+]]></content>
+      <categories>
+        <category>tech</category>
+      </categories>
+      <tags>
+        <tag>markdown</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>reckless</title>
+    <url>/2017/11/19/2017-11-09-reckless/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>最近在比较好的循环当中，工作解决了不少问题，心态也逐渐回归平静。</p>
+<p>是要在冒险与宁静中找一个平衡点的，要经常做一些比较新奇的事情，不需要考虑后果与影响，年轻就该是 reckless。</p>
+<p>听见一个故事还是很感动，Chenhao 告诉我，她刚毕业不久后孤身去云南，本来只是一时兴起，可后来她临时决定徒步去西藏，这一路就是几个月，途中经历了不少麻烦，能搭到便车她会蹭一下，有时候也有来自全国各地的驴友，可大多时候就真的只是一个人而已，忍受无尽的孤单，也许有时候找不到借宿的地方，还会忍饥挨饿。</p>
+<p>其实没有什么事情是做不了的，做事也不需要太计较利弊得失，人在大多数时候就是说的太多，做的太少，我在每一阶段做出的最有利于我自己的决策，可能在别人看来也不过是井底之蛙的举动而已，要超越，更多时候需要自己不懈的努力，附加卓越的经历，这些经历会让你看得更远，你要让你自己变得更有趣，更生动，成为一个更为真实的人，无论利弊得失，坦率的分享自己的过去，坦率的面对自己的弱点，坦率的面对自己做不喜欢让人触碰的东西，只有你自己认识到了自己的问题，才有机会去克服并改变。</p>
+]]></content>
+      <categories>
+        <category>personal</category>
+      </categories>
+      <tags>
+        <tag>日记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>reflect</title>
+    <url>/2016/09/27/2016-09-27-Reflect/</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="db85758617e8704b5d7ba2325f030faebb171d1da42b02287f1dc61ab32a48de">4a7408545c00d6cdacf7a599bcddb9e9ad9df8781f0b6f371b7519cf1ba60458a5f75a83d1bd8e98e8d359f5db617afb0483ec12ce19d495ef000d680406e7410ac6073615cdd280e2b673302d16a1194058f9ef2718deff49679056fe86f49f8bf03263e52d0f60cec3f5a5544c1729bc84aac535b261b0de77a9393eef4088a123b0a5780d707ac6fa7bf63d97cc764e304ff99c03d469080cbf2a851751ab06193f847bc0bc76f943f0fd765e2f8ce107ca265cca1548e8b283ae109c62e267347091927813e2cbfd71dea5f29a05fb9d91df298b4eeaea40a934a79dbb300f12f9f7ac5156e817cb8b2391058ec32d2a0e3c006e09a5f66a47d46c4cd11b5f6661b7ff871ca85f5edf0d3782eaa59ec038e7fffa43a17e9f9372dc7acf3eba0b0dea7d027d1a60f45c549f7af9a669263e621af737254f85b9599db7e9d88e077cc7f05a574c9f55c8a4d08d3b0205d17f41b2db2f20d1a7abbb0466aa32e0b66859dc48e22fcd2842833e2287f230948de0f16cabdf1e3f8c7d96f852e683b76a62b902fae2d1bf13065a1f77b98b6185beb28d90676ce7637406d80522eb4152eba88ddf28b6f5efe135d7e315cfe0d8ee909037850be6806a0986639c6aea3a28e7f0d5d0ef5db69d59ceac65507aa1e2ba4d9f3706bd090839c5e91a2995f8ac3a9863a7f70ce2617ca1fd60254232bd98d136ba91ab17d196ca42371178fa64019c555d8cb5bef7de67beb3c74c72083053164c3e672f745615ccdf2298f7a055e54c8fb9f17d457a6187d3adb6da3be32e656c61527af3af1327d5b4c34b1204283895f27e0ff7c5a9d0e62fc2b1c28e03181a436c5bb36f1c1bb42cf662af9f5f2e908b77fcd9ea29ce786b41788930c1ba3bf9dc54e5b39e3656604c9c33aed222f5d8c15f7d405c8a30677180d5775ad9807d2b907f2f070546256f971c2b8efd865500f933c63ad4665640d4240f524e1ef8bc8f8e8517b160200e9affcf9805b674c12fdec6dd3d550246379fdbc43bf5c9d0bd976095f5c858a1fad5d0918fd1b7b1c81d7a68c7f0f8394f0b68abc1d520f2e0a889854841a10286e067cbbc94a2fc49a0f54ec3344b085583d0d1dd891ce7519aaec3a9c429bce1b44219a68695d754930dcb1262737b34bcd2bde3d3f239c446590b0254c07c7e4c09a6dc54aab1cf4e3366cee5569e6cc75b5545d2718bcbc25a64f1be8bbe4c3c2cb3d2b648592c4a24b3918c4a03adc552f7316cff826b08250cfac5450fe87cee6e36cb9e8515ac853ad55f626cc5b5e75d551ec1ce45bd8ee799185f8adf167b1674c6dc76ab6fe87b0f0ad408306e086e1824ad59e823b3fd6961489ad90a64f3acfba1098998dfa486e6c6518a5af9f20b02e99d1c10b152404b8d108815eb34d8c4ee99280d769174c135b435d88500b764693604ddda02e1dff33fbcdaefde0e6307a72ca35340feadea4eafca2c5f94028b2397e6bd77766775945ece13330cd0759f77788c349d2aec7c5cc028f9bb4b84dacdbab11e4ae4c3a06a2cdef8fa9b0db6ffeac50ce2536ac91c1672c635540dc8400007463c526ddeb94243a7cb3c2f1cb237348c284707083b2a33c79b6673896c6cf47217ba464bc410549cbbae6b804e96abcbc9ea9d2265e52d08f4b7066d96550f8e11be6bd27a363524e2b08a14b3bc18da68753810a6e6c51c6e3e0b5b53076537bc8055933d948a3bc52dee7bde38591e858f0e2f86ce79c295577611af23b1e621e196e1e66112f98d71fd4a76e25973964742793688192c314151e3ccee4cc23faa0c2659a556955bbbe50423e83833d84ef96d85ce87327c8cb6b9f3eb0d76c7a80fb7fb433ca879f1595da8e77c9ce7f2dc40ace907ee7954f7d6cb827c3d5ce8c728a3e60e3e0f43d5e26dcf95b959ae86bab16094d7209a4a56e9bcce35be4a07d25138437fc97ae613cca1e52d202fd237c960898580657784eb70b6161d9c61ee1b951099c2d4344e06af78b91b87fca96cce556f25984ff3a3d2b3b7cbe901be265e07370cc1cbe4e98374f8290a4e55b02dce44cb124082b8b5a8d6b0be6599af7b476b88a714c9a5914d657f4527fa698d3c9f6c6de8dceef14e6387f226e455f9a052d6fb3451b78ae75d744136dfe15ea48b52a2faafdfd97dcd048d365ca637d91d1fb56a15b8d77167cfc813b538ec2a3859296e1f343b3cf31011f5c27b1eb556d7dfbb783cb5ccf2f18290634d94e46dcd775264e7fa11c6b6c5bfc7932775ffeab59816639cc5cdc710e2760cdfe2bd09548102b9d08fcd420f13f96d58480ef210df149fd45417c1daad67d1ee286534fc6dfb3f1a4033015eddc97a64e451ac064b462d85034b51e8e9064058a9e1e3be053d4803298109f16007c7dca0e7e0a2e8af804b86763ca1e0f121338b8652127eb412a933f288453a24b6ddebb9b6fe5cd085bc1f20f27026b481a8ec032f32be317d7874cc8f2dee886190f8289ecc28f9f1588dbcaabb7ecef85ef44604c11a4615a42260ca9476698bd0e84029256ccc929fb3e57a7c231d3ecb5d09896f2471123f1897d6b4a4f506099d1bdbecac3a41f52629c0eb535ab53f357067981fdc6353359e2472db4e7853034bab96eff7bc71bc29746598d5d7460b6b54c1f0446980afd5d5901721bf3c0d34e1646fa71f17d8a73c3492e5880eccb1e134e8296f53c009282445aeec7f02c844cdffe68469cbe8a72a4c049ebc568b09e8404dccbf9c0ab7435c21fcf243d4a789e0bfa3025871615082f2c23834d87aee45ab340d7456b9ee72329c22df497a181e45ca6bf6897177c99e239e61b2a23adcfce54c7831ffa4fa57dd2af952976e1501e6a373242c0aca26d82172836512e2528b5d3a663a50ae117e63d61fa5da85708037d205ee6aa4adb33fdbd1ffa51f72204863ab973f0e084452b858fe8aa382cbfd49a880a0c7b0e0135c0afd2dd88505b57222362be9ece1ae86d8c9c83730b7b7fa11aa767cf888d322e5bbfb0499208e3637b3c7a54060ba7baf4c5f9d9f30de311c6ca5e07784f807bbcd3017a24369017e1abc03959d1999bdea3548cbf601215234e138decdef624ab161434db10e47120363a8bb5216aa7163f7b34271e76fa4b6236aa625dd6d718c80be6feb978eef3d164ca7035fae5c89b8783e5b3105083c5595c96032e955a4cf3c31a317f0925148a61cc9cb228f483effe2db37eeab2a17af96b2b2bab894a3137ba85afea1059bedeca81ab0fc54930399d00148c7f5eca48fc0999f2bfce939dbb847bce1d2c0dd7cb8b3086b8bf4c98b5311657dc442bde0127147a84fbd3542f2946d308c247fb64b1eb0bda9ecdd26759b007d23b9603d3dcc4a87b9e4f4d9d32c0e286b761e7e9a4143aa780f3a75f4338232ca60da578eb5ff047669e1e2379443f38cd521360cf85ffd6460df7efa9501e4e63b06d759308167796cd7e2ca89de9c44a2ad11284e56ac58298d6799560ae823f45f4630c0ace65fa18729fd162704c8fefc64ab62d130ad21e0b372a7911e2c5d0679968644079a9222a5f0affb7ef9f04f89575b6b1b9ff8e9807dd6e213416ca420c3a82a22fd4533e38e64f3bc41c84e6ce0408acb90bcdbc9047391868ce58695788b7958dd34e5d270920cce8ec941a32d23d0f2fa5594bc26978995fec2b3e1745fe38dfc0cd40ddb72d60fa919a8fb0758807e4abd127a9340337d247d10d073ada0d71d76f94cecc70a145fb89cd09ecabc24ff825596f3760281049c2bc5daf19299b3705191f2ada8dc314adc537d413ac04783feea7cdfe99dcc9d90361b5355fd5dc0326290af3f888e67e515139cd77699707c4269b393bd2aa87b86ab8ce568abff275b656eceef38659bd568dbc88746c5f491f6468752fb8b881be054ec42954e00af39a0a33fe6ebba19eec443de5f89106a01e819ae6c04d9f8f361997df7cf7b7efc9277b69ce54bc0bd4ec07fc9b2c9b14fdb1f6cc98570984ce4bef3e52609f528fe11877cc90a092d83c940d91807ace10149d95da5f08501cd22f3caf66f9c52953840f978fca3260a3fec49a580f5eddd2854660cebfd253c4f402fd9ec881b1bb390a303fd4edc53c253b73495d417074e7029be82f094e8634b6a5914f5ab84a9ad01133ce652deba374c7b82cf6b990832e862b257f70b4c3b734ae934a36154cc7b157bc7f50b72d9f97992bb4e0b65f9f57c9862c670d625048f24789f2402688ee78c3af9e31b5bfbaabab970a43b2ca7b487e2305a3aaf8a5a6a9c2cae991a4b4f5297c845e0337d16465a2ce69d61431c804805d714a57af65c26398a33f5d91c99be729d3f987912a7f53217cb2adad97c0a0fab66ecbdbe8a6a661b00ba70656987ca3b1c15df43d89f14629d2ae0693b3125d270b303cde35442ea2d049ed4003656f3a55fc8a64519ecab3336c90b3b19b526134a1863a1ada5ea55ee065af0422e21c60282421f8b1a9ab3d42dc06881dd5a4f09e3d84250eaa324befa0516ad4744ca0deee5703e57706374354a8e6e10b483d3c2fbe96b9f549aad66e9129e28c3ed261df7dbee2b4f9a64e91df6cd0778e64fd655ec16e6fa8f8fd61678c1f1319da035b2d4e7bcb087e5e4cf8e645050cecac8be6733bd3cf057e8303d02309fbc214d50faf1706fc2366610a82a13e060368a0fdc2eccedcff1d3cdfbc724e465fa5741aef5abc0990310e99b5016273405d31613132ab9f8442de47a52c8bf348bd80ed224dd9b3aab9729ec8c603d8457565faf4c45418b2214586596d0dd27bffdef6fb7596e5371a2eb7f23dbc75a9080a6629aa7d5fb3fa67f2002176e5de20a0deededf411fd4dd1fe5d84fa3975c407210b4c211ca8dd69ab25c00aab83bda2f44145b91459010fc8c86e41ea69cae3efb5820da19da42a516ef68b187e265419deb4c2cf9fd02f703a306127fc8b19e46807339e71c12ddee74efad5d67e5b9b889f38c287910ba35096a8f04e57606520e98da9caa30dc5075324903dd400261440befc06a54af9157caa24bfd2323df8fd8c00d21ecc2301d579678039cae0d75f35543a4a495cf08246602fae7b668d2cb73c7cc6052601cec2bccdf2c708507beb74327d4deedbcb5d84812270c055642c010751135a55b092aeb2de9e1caa49e331c1f4d11131c446ee98d2edaaf606018842298b619a6be656c05867b04a2120503f8c90ea26ecbecb6ff030ef2a6525c16253d96481f28b64ceb70db556340b691c0b435bd0cd785158f8a59ab4623ce3bbb652a71b184771cf8219c51c5ac5cf5498b2f4889a704fc3dc78400338e65801d9961239092aac7afbf2cfdd01b6ec36efec50e576bd9bec667cf1ddfa4466eb5e8e10c6ab6c224edc476f0dc114a67bc8ca99669e9c42adae0a624719b22777321131014f573106f909083c2a2054e0e71e1b7089f863dd806eafccb4cdb8c00944f4f71edfd5dfbfd3ec5c1b294178fd8b2b4dfd8e580bb4e83133e82da10d4167c7a618715557cc2ef2e700508fb6fc2d552397650101e29caf04c280fec8403c4f8c988a20ed8238a5d3951542fc96b0890c3eca4eeae9878fb9523c1b5f32c25d11f40a2ea7cf9951b64096dfca009c60a8008d3eb25a844a20243750137c6737d66b5d89574007341782c3bf8bef9119cc183806784188770b32d8a9fa9f95fabd4bda9af1f2debcaadb00b5676320bac6151c347ee77667928d8fc5174bac152b62b5c05d3c58ee3ee0eaf8c4e967d1471147a86a31573a405b62e97c91064c4b40dc6c3665c1332fed40eaf6e0e05653c49168996eec4a16a87d36b00438644a157e9c7cc932ab66874f899a791cbb5ce2283c1c9bf8aff1a6fac0f33d73a08e92e5ac472ca0e24f95cc457088186966ea7d290d6a918f76043bbf0316b38941b1d35a37ebc6d1342e0e0d129ae8021314b65b6effbd78472a0f0d8c32a33de0af368eb3e5f7ef9ccfdd479f31806f1f7a91554f96628b5e7816bd12bd35e01397c76abe558d606faed861a98410c4ff64414f68f7cefa7d4b564533dbecb065060d70aa584b93ded74e3903fbd0c0a407a0596ae045e8cae6c2dd09a73a472aeb139dfea9ef08f7bfd93dab8aca05efa1fdffa5851953f663fee448ae72e976c713d6a954e7bfb234e78508f936e360645e83a52b2ae1fabd9b1b13c0dcd3c25ca76a336ce8eded24782798c644e8c189c915a06e512ed5b423d82b3dfd866c48cee10a7b0692c986f0863dd9a5b0b07d3c58cb44ca999e5abcb86db595db49de79f01a83c40a0ddadfe3934329dfa03aa8492edcd8008ecf3a57b76f9c2e9f2d50b9b4e2b47d7629c0a066748650840ddd2b8c3c21e999e2cfd9d93e371079b689fa199d1620916b692620d3396d39742a398bd8df63339defb5d1b122960e0a011ea632942d24805acd6755759c4b5918d86b0cbd6ccbbfc1587470dfe0aa1e411cdea4beccc9ffe21f926f8f5acff5979d3361c88925dae2f406ebffe03ecbe6696a43f88326543d1cdf23cad4c76ca4534c682f1eb9cd9565b9a4fd1459ef778d0e2ee2db1c06306c84bcab93120536cf0f04748ddc421ced312835d28dc9c03ca5fd27f5b910d318f95365c588c728059f5988b5877e6e10692f83541ab0fd9c9248d5fb93313d90998c0cad69f0a57951af653be1099454e5c99b5205163071d7d5cc52c14f88841ed772f6875bf70d2f37b84b4121cd5c0e6b32a839bebd8a56aace24699c20045f59107da80d552736cf1c55faa961e65a82948be006eff9dc294724c6419912b9ba138b5b6c2bd7e10ac30d02d2a8ba78f18d905e0b89f8e8189a49b5479d868230ea710f07304f5995793ae7179eff700801deafb47a727f1d0c48fa6caab834c9d3a612192913aaa450c179bd0b8192803e3283e2952a2566df57d6da85c304dbaf5245947088e76e638d844b71a9b58c70cb4db6f06672665727c40cac0ce61044abfa627481cc73152472ea9abf89cd52a5a4537cfcfb636fae7f407b59d4dc0e691484dfd1e447f49c46fbbab7cb6614fb8f6be747f526ed3e605416cca88d9509e7ebd8d447b5140612c30a2080a92430c3b884fe06b43b89258dd49b4619cc3c15cff4db966f00e18a4d1d60b7cd9314d3075e2605bb7e90b61aa51125605a46b591c29b0dc190d33153f019d1b0658ce93e4cb55989347dc3dd7d87f66e339c27aded82f2f7ba12623d94407541ac5ac0eade44be16481787fc03f18aa0bf2f0fb29063000f92e8b8210ee902d1ed4f776a2f878ab4144747df03ab2de3355dabd11d5d6febcc4737ca94e4539004a89c539d129ec11d1f8849db90651d6e01ea3e7827fbba8b723dda126f4733662a2e8bfae934575fc82ce34b66d76c8b9ff39bf6e76cf36ca08953bb58f379814c258cc33b361811b86de49971ddf69cbdc28299d50aff4eaf1b3a819ab63e62df94e1df90b987f25feef883498b0bce56b2ea3f44f0c8ca428d873629b7db2d0b1f167fc2ccf88143469f4370c1aacd35a9a26cc8421154336c128852c32efda8d8ac58b0892f094e85bfedf55c52b7c9b967428e26eac96ab20dcbf867dcf6a6111d356d2ee819b6acb9dcfe567fd1c36433f45e24394ab9a221e65d2c05191e209fc73423c6d62d8a73544523fa9302de9e588e1c9d3439a7dde36c00a93be3b88c17cd7b2bfc70c96b8891574d8835b5be91b6fb229386f2aab5fbfda341f05bac38fe374d81fb065008eec2301394cfb5bdf28b01dd6c2d56cd2913c0788acae4cda40ba424a066cab787d94f4d0b806014ad951b612051beed6136fe4a5629046234c77b808ce890b50147a138dcecef4a2b038bdcd3e7942104e5ff7ad83239fb0339abd33355ae7d902b8eaf1547a08f326df760cf2229ab32db4d0c3b790d160859b9012e47126e2d7777210aa46992a611b3db99c8cb1d94fb64080843c94746bd5f45f8404259284b3292742cd79042ec4d17cb80766d1a3c2a13daee33c2f827173c30f295e018ae140c63fee05e8bc68b4d9ef12dda364f4078b57690b9d57f0dcadd14436e43f4a24f71bc49e63614e711b7291cf7952bf240e05a73336acbbcc145ea53d5dea4f69afe918cb13d1df9618cb0cc5eced1f5e2047ebd3365be5237a22dcc66828a685102bb925f36f4711dc24845d69f3158c09b4642e5aeeaff846cb37069eccf7d6d83fa4bd245fbb608b091e97302844565615c37bd6019128a2448c57a4da5da4581f35fe13fd6f3562f8eb39be653c23de22a6161b25857ec46ad2e52bc1e89f61fcb7a8e90da6c9ecb4e8e1b6e5c3d11a851159e4f24b1bfc6de940d6e675f49dfe68a8c18e24a6c258eacafd499be4c08186fa6b8fc0018606c1e5c7eabdb486baacf534e309d2670ee5ce2717774c10faec11b28a2c3b3d13d4f2f5b57d7fdb4833057a46c21d783054964bcc799f831b4bdfe62411a5c5a0ea439579cfe09a85c728be96110748f9920e23c4519ef0dc3f7aee7a4bb83410ebc2f5f1092725</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      <categories>
+        <category>personal</category>
+      </categories>
+      <tags>
+        <tag>日记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Review</title>
+    <url>/2017/11/17/2017-11-17-Review/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>1 举出 3-5 件过去发生的不好的事，写下对自己的积极信息，可能对未来产生好的影响？</p>
+<ul>
+<li>体育不好，从小不太合群 — 生活独立，可以自己自由地去做喜欢的事情，看了不少书。</li>
+<li>大学荒废了几年时间，没有形成核心竞争力 — 把想玩的玩了一遍，之后可以更专心的工作学习，这段时间对我来说更多是试错；经历了几段感情，人变得更为成熟。</li>
+<li>高考差了几分，没考上同济 — 即使上了也是语言类，其实今后怎样更多还是看自己的决策智慧，是否敢于做出突破和改变。</li>
+<li>自卑，小城市长大 — 首先要正视自己的过去和弱点，不能逃避，勇敢生活并做出改变，尝试解决问题 rather than 避重就轻</li>
+</ul>
+<p>2 检视一下最近做的事中哪些对当下有好处但对未来几乎没有价值甚至有害，你决定减少哪件事的频率，会采取哪些方法？</p>
+<ul>
+<li>玩手机游戏，再次陷入了沉迷的怪圈 — 卸载街篮</li>
+</ul>
+<p>3 列举 3-5 件做过最有成就感的事， 列举对自己或他人的影响。</p>
+<ul>
+<li>通过 AA L1</li>
+<li>帮俄罗斯女生写了篇 R 的论文</li>
+<li>通过 CPA 的几门考试，考入 MBA</li>
+<li>学了几门编程语言，英语熟练交流</li>
+<li>自己制作游戏机</li>
+</ul>
+<p>使我意识到了通过自己的努力 literally 我可以实现任何事，nothing is impossible， just do it.</p>
+<p>4 列举 3-5 个未来五年打算实现的目标，如何实现它。</p>
+<ul>
+<li>成为一名编程高手，一个黑客。</li>
+<li>在技术领域成为专家，实现兴趣与工作的结合</li>
+<li>成为一个合格的管理者和沟通者</li>
+<li>找到真爱，哈哈哈</li>
+</ul>
+<p>5 除了工作，写下 3-5 件打算每周去做的让自己放松下的事情。</p>
+<ul>
+<li>玩游戏（注意不能玩网游）</li>
+<li>看书，每周至少五小时，可以是英文也可以是中文</li>
+<li>做一件之前没做过的新鲜的事</li>
+<li>youtube</li>
+<li>有声书</li>
+<li>锻炼</li>
+</ul>
+<p>6 写下一件打算长期保持的爱好，每周多少时间去做这件事。</p>
+<ul>
+<li>编程，5 小时以上</li>
+</ul>
+]]></content>
+      <categories>
+        <category>personal</category>
+      </categories>
+      <tags>
+        <tag>日记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>终身学习读书笔记</title>
+    <url>/2017/12/24/2017-12-24-%E7%BB%88%E8%BA%AB%E5%AD%A6%E4%B9%A0%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="教育模式"><a href="#教育模式" class="headerlink" title="教育模式"></a>教育模式</h2><p>教育制度分为三种，第一种所谓应试教育，运用考试的力量迫使学生学习，这种方式学生的参与性较低，但却是最公平的方式，无论是寒门还是贵子都要参与统一的考试，这种方式着重把学生培育成一件工具，或是一台机器，即培养所谓对社会有用的人，或有用的工具。</p>
+<p>第二种为素质教育，这其实是着重培养中产阶级的教育方式，除学习之外会要求学生有很多的兴趣爱好，美国主要倡导的即这种方式，常青藤常常要求学生积极参与社会活动，体育运动，这些贵族运动其实无形之中把贫穷的学习拒之门外；比较与中国阶级流动的减缓停滞，美国形成了阶级的固化，如果从小没有相应的环境培养各类兴趣爱好很好进入好的大学。</p>
+<p>素质教育的核心是成为一个更好的人，本质上成为更好的自己是为了被利用，而第三种，也是最高层的教育模式却对此不屑一顾，他们只需要利用管理他人，相比前两种模式第三种教育只注重培养学生做决策的能力，他们培养出的学生可以不会做 ppt 也可以不会 excel，他们只需要在正确的时机做出正确的决定。在这种教育模式下，教授会对学生比较宽松，他们会要求学生无论是好是坏，为自己所做出的决定负责。</p>
+<h2 id="知行合一"><a href="#知行合一" class="headerlink" title="知行合一"></a>知行合一</h2><p>在互联网时代下，地位背景金钱等等都变得不再重要，唯一重要的东西是认知，有钱并不能保证你赚更多的钱，有高人一等的认知会在这个世纪胜出，一个行业的更迭可能只有十几年，旧的知识体系在新的时代下经受不住挑战，要胜出就要不断改进自己的认知结构，终身学习，先提升认识确定超人一等的目标，再用行动和执行力妥善跟上自己思想的步伐，言必至，行必果。</p>
+<p>认知升级的途径：</p>
+<p>1） 承认自己的无知，承认自己不知道 （万物皆有裂痕，那是光照进来的地方）<br>2） 采取行动，把知道变成行动<br>3） 永远和比你知道的多的人在一起</p>
+<h2 id="一只眼死两只眼活"><a href="#一只眼死两只眼活" class="headerlink" title="一只眼死两只眼活"></a>一只眼死两只眼活</h2><p>培养两种以上的禀赋，在一个领域做到前 1%是非常困难的，可是在两个不同的领域做到前 10%就不是那么难，考虑到知识的更新换代，有两种不同的禀赋相长相承有更有助于职业的发展和个人的进步。</p>
+<p>在查理芒格的穷查理宝典中更强调了这一点，查理甚至建议一百种左右的跨学科学习。</p>
+]]></content>
+      <categories>
+        <category>personal</category>
+      </categories>
+      <tags>
+        <tag>日记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Louvre</title>
+    <url>/2018/11/03/2018-11-03-Louvre/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>18 年 11 月 2 日第一次参观卢浮宫，带给自己的绝不仅仅是震撼，法国人民保护历史的观念可能早从拿破仑时代就有开始，短短几百年，卢浮宫已经收猎了来自法国本土，欧洲，埃及，希腊，近东等地的珍贵文物，这些文物没有因为战争而被毁坏，也没有因为中国文化大革命这般把自己的历史全盘抹去，讽刺的是中国三十年河东，三十年又河西，一会要全面反传统，一面又要文化传播弘扬主旋律，一味建什么孔子学院，试问一个民族如果连自己都不坚持或信任自己的体制或者文化，又谈怎么宣传，皇帝的新装在中国活生生上演。</p>
+<p>这个时代活脱脱是一个闹剧，一切历史都可以被赢家粉饰。我在意识到卢浮宫到底是多么宏伟的一霎那泪水差点蹦出来，之前对法国人不甚了解，他们其实很会自嘲，也有很强的精神领域，浪漫或者艺术只是表面，他们有着对人类文明的捍卫观念，从某个角度上来说，他们的年轻人相比其他国家的年轻人更可能发现人为什么活着。毕竟在欧洲有太多机会接触到不同的文化和事物，不容易对世界有那种非黑即白的认知，世界太大，荣华富贵都是过往云烟，一味的物质其实真的只是浅薄和无知，当我看到卢浮宫有着世界文明那般程度的浓缩之后，一霎那我用一天的时间走完了世界几千年。也罢，对酒当歌，人生几何，作为一个人更需要明白你自己为什么活着，能不能做出一些贡献，有自己的精神场，才是我现期的要务了罢。</p>
+]]></content>
+      <categories>
+        <category>personal</category>
+      </categories>
+      <tags>
+        <tag>日记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>断舍离</title>
+    <url>/2017/12/27/2017-12-27-%E6%96%AD%E8%88%8D%E7%A6%BB/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>生活在一个物质亢余的年代是辛苦的，所有人都拼命得到物质，人与人评价的标准无非是金钱，女人，地位，这些标准面目可憎，令人厌恶，每次我回到家姥姥都滔滔不绝地说我太瘦要多吃饭，穿的太少赶紧买衣服，我知道她本质上是为我好；可这些东西与她有什么关系？吃多少穿什么是我自己的事情，与她有什么关系？难道我不知道自己喜欢什么生活方式？中国人的家庭最令我讨厌的是总有人喜欢对他人生活指手画脚，这些点让我拼命的想逃离家庭的束缚。</p>
+<p>现代社会难能可贵的是断舍离，抛弃一切不是必须的东西，享受极简主义的生活方式，落实到家庭生活中 80%都是些鸡毛蒜皮的琐事，而我们却被这些琐事占据了大量的精力心神，要享受纯粹的生活必须放弃亢余的物质，扔掉 80%不常用的衣服，物件。</p>
+]]></content>
+      <categories>
+        <category>personal</category>
+      </categories>
+      <tags>
+        <tag>日记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Xpath学习笔记</title>
+    <url>/2021/02/05/2021-2-5-Xpath%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>XPATH -&gt; XML path language</p>
+<h3 id="Node"><a href="#Node" class="headerlink" title="Node"></a>Node</h3><p>In XPath, there are seven kinds of nodes: element, attribute, text, namespace, processing-instruction, comment, and document nodes.</p>
+<p>XML documents are treated as trees of nodes. The topmost element of the tree is called the root element.</p>
+<h3 id="Relationship-of-Nodes"><a href="#Relationship-of-Nodes" class="headerlink" title="Relationship of Nodes"></a>Relationship of Nodes</h3><ul>
+<li>Parent</li>
+</ul>
+<p>Each element and attribute has one parent.</p>
+<ul>
+<li>Children</li>
+</ul>
+<p>Element nodes may have zero, one or more children.</p>
+<ul>
+<li>Siblings</li>
+</ul>
+<p>Nodes that have the same parent.</p>
+<ul>
+<li>Ancestors</li>
+</ul>
+<p>A node’s parent, parent’s parent, etc.</p>
+<ul>
+<li>Descendants</li>
+</ul>
+<p>A node’s children, children’s children, etc.</p>
+<h3 id="Selecting-nodes"><a href="#Selecting-nodes" class="headerlink" title="Selecting nodes"></a>Selecting nodes</h3><p>XPath uses path expressions to select nodes in an XML document. The node is selected by following a path or steps. The most useful path expressions are listed below:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Expression	        Description</span><br><span class="line">nodename	        Selects all nodes with the name &quot;nodename&quot;</span><br><span class="line">/	                Selects from the root node</span><br><span class="line">//	                Selects nodes in the document from the current node that match the selection no matter where they are</span><br><span class="line">.	                Selects the current node</span><br><span class="line">..	                Selects the parent of the current node</span><br><span class="line">@	                Selects attributes</span><br></pre></td></tr></table></figure>
+
+<p>Examples</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bookstore	        Selects all nodes with the name &quot;bookstore&quot;</span><br><span class="line">/bookstore	        Selects the root element bookstore</span><br><span class="line">bookstore/book	    Selects all book elements that are children of bookstore</span><br><span class="line">//book	Selects     all book elements no matter where they are in the document</span><br><span class="line">bookstore//book	    Selects all book elements that are descendant of the bookstore element, no matter where they are under the bookstore element</span><br><span class="line">//@lang	Selects     all attributes that are named lang</span><br></pre></td></tr></table></figure>
+
+<h3 id="Xpath-Axes"><a href="#Xpath-Axes" class="headerlink" title="Xpath Axes"></a>Xpath Axes</h3><p><a href="https://www.w3schools.com/xml/xpath_syntax.asp">https://www.w3schools.com/xml/xpath_syntax.asp</a></p>
+<h3 id="Contains-Siblings"><a href="#Contains-Siblings" class="headerlink" title="Contains, Siblings"></a>Contains, Siblings</h3><p><a href="https://www.guru99.com/using-contains-sbiling-ancestor-to-find-element-in-selenium.html">https://www.guru99.com/using-contains-sbiling-ancestor-to-find-element-in-selenium.html</a></p>
+<h3 id="Simple-online-Xpath-test"><a href="#Simple-online-Xpath-test" class="headerlink" title="Simple online Xpath test"></a>Simple online Xpath test</h3><p><a href="http://www.xpathtester.com/xpath/76bb0bca-1896-43b7-8312-54f924a98a89">http://www.xpathtester.com/xpath/76bb0bca-1896-43b7-8312-54f924a98a89</a></p>
+]]></content>
+      <categories>
+        <category>tech</category>
+      </categories>
+      <tags>
+        <tag>xpath</tag>
       </tags>
   </entry>
   <entry>
@@ -110,356 +428,38 @@
       </tags>
   </entry>
   <entry>
-    <title>Xpath学习笔记</title>
-    <url>/2021/02/05/2021-2-5-Xpath%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>XPATH -&gt; XML path language</p>
-<h3 id="Node"><a href="#Node" class="headerlink" title="Node"></a>Node</h3><p>In XPath, there are seven kinds of nodes: element, attribute, text, namespace, processing-instruction, comment, and document nodes.</p>
-<p>XML documents are treated as trees of nodes. The topmost element of the tree is called the root element.</p>
-<h3 id="Relationship-of-Nodes"><a href="#Relationship-of-Nodes" class="headerlink" title="Relationship of Nodes"></a>Relationship of Nodes</h3><ul>
-<li>Parent</li>
-</ul>
-<p>Each element and attribute has one parent.</p>
-<ul>
-<li>Children</li>
-</ul>
-<p>Element nodes may have zero, one or more children.</p>
-<ul>
-<li>Siblings</li>
-</ul>
-<p>Nodes that have the same parent.</p>
-<ul>
-<li>Ancestors</li>
-</ul>
-<p>A node’s parent, parent’s parent, etc.</p>
-<ul>
-<li>Descendants</li>
-</ul>
-<p>A node’s children, children’s children, etc.</p>
-<h3 id="Selecting-nodes"><a href="#Selecting-nodes" class="headerlink" title="Selecting nodes"></a>Selecting nodes</h3><p>XPath uses path expressions to select nodes in an XML document. The node is selected by following a path or steps. The most useful path expressions are listed below:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Expression	        Description</span><br><span class="line">nodename	        Selects all nodes with the name &quot;nodename&quot;</span><br><span class="line">/	                Selects from the root node</span><br><span class="line">//	                Selects nodes in the document from the current node that match the selection no matter where they are</span><br><span class="line">.	                Selects the current node</span><br><span class="line">..	                Selects the parent of the current node</span><br><span class="line">@	                Selects attributes</span><br></pre></td></tr></table></figure>
+    <title>python元编程</title>
+    <url>/2021/09/23/2021-9-23-python%E5%85%83%E7%BC%96%E7%A8%8B/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="getattr"><a href="#getattr" class="headerlink" title="getattr"></a><strong>getattr</strong></h3><p>‘<strong>getattr</strong>‘ 就是在查找不到属性的时候调用</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#__getattr__, __getattribute__</span><br><span class="line"></span><br><span class="line">from datetime import date</span><br><span class="line">class User:</span><br><span class="line">    def __init__(self,info=&#123;&#125;):</span><br><span class="line">        self.info = info</span><br><span class="line"></span><br><span class="line">    def __getattr__(self, item):</span><br><span class="line">        return self.info[item]</span><br><span class="line"></span><br><span class="line">    # def __getattribute__(self, item):</span><br><span class="line">    #     return &quot;bobby&quot;</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    user = User(info=&#123;&quot;company_name&quot;:&quot;imooc&quot;, &quot;name&quot;:&quot;bobby&quot;&#125;)</span><br><span class="line">    print(user.test)</span><br></pre></td></tr></table></figure>
 
-<p>Examples</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bookstore	        Selects all nodes with the name &quot;bookstore&quot;</span><br><span class="line">/bookstore	        Selects the root element bookstore</span><br><span class="line">bookstore/book	    Selects all book elements that are children of bookstore</span><br><span class="line">//book	Selects     all book elements no matter where they are in the document</span><br><span class="line">bookstore//book	    Selects all book elements that are descendant of the bookstore element, no matter where they are under the bookstore element</span><br><span class="line">//@lang	Selects     all attributes that are named lang</span><br></pre></td></tr></table></figure>
+<h3 id="getattribute"><a href="#getattribute" class="headerlink" title="getattribute"></a><strong>getattribute</strong></h3><p>所有属性访问入口，控制整个类实例过程。</p>
+<h3 id="descriptor"><a href="#descriptor" class="headerlink" title="descriptor"></a>descriptor</h3><p>执行顺序：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">如果user是某个类的实例，那么user.age（以及等价的getattr(user,’age’)）</span><br><span class="line">首先调用__getattribute__。如果类定义了__getattr__方法，</span><br><span class="line">那么在__getattribute__抛出 AttributeError 的时候就会调用到__getattr__，</span><br><span class="line">而对于描述符(__get__）的调用，则是发生在__getattribute__内部的。</span><br><span class="line">user = User(), 那么user.age 顺序如下：</span><br><span class="line"></span><br><span class="line">（1）如果“age”是出现在User或其基类的__dict__中， 且age是data descriptor， 那么调用其__get__方法, 否则</span><br><span class="line"></span><br><span class="line">（2）如果“age”出现在user的__dict__中， 那么直接返回 obj.__dict__[‘age’]， 否则</span><br><span class="line"></span><br><span class="line">（3）如果“age”出现在User或其基类的__dict__中</span><br><span class="line"></span><br><span class="line">（3.1）如果age是non-data descriptor，那么调用其__get__方法， 否则</span><br><span class="line"></span><br><span class="line">（3.2）返回 __dict__[‘age’]</span><br><span class="line"></span><br><span class="line">（4）如果User有__getattr__方法，调用__getattr__方法，否则</span><br><span class="line"></span><br><span class="line">（5）抛出AttributeError</span><br></pre></td></tr></table></figure>
 
-<h3 id="Xpath-Axes"><a href="#Xpath-Axes" class="headerlink" title="Xpath Axes"></a>Xpath Axes</h3><p><a href="https://www.w3schools.com/xml/xpath_syntax.asp">https://www.w3schools.com/xml/xpath_syntax.asp</a></p>
-<h3 id="Contains-Siblings"><a href="#Contains-Siblings" class="headerlink" title="Contains, Siblings"></a>Contains, Siblings</h3><p><a href="https://www.guru99.com/using-contains-sbiling-ancestor-to-find-element-in-selenium.html">https://www.guru99.com/using-contains-sbiling-ancestor-to-find-element-in-selenium.html</a></p>
-<h3 id="Simple-online-Xpath-test"><a href="#Simple-online-Xpath-test" class="headerlink" title="Simple online Xpath test"></a>Simple online Xpath test</h3><p><a href="http://www.xpathtester.com/xpath/76bb0bca-1896-43b7-8312-54f924a98a89">http://www.xpathtester.com/xpath/76bb0bca-1896-43b7-8312-54f924a98a89</a></p>
-]]></content>
+<h3 id="new-vs-init"><a href="#new-vs-init" class="headerlink" title="new vs init"></a><strong>new</strong> vs <strong>init</strong></h3><p>new 是用来控制对象的生成过程， 在对象生成之前<br>init是用来完善对象的</p>
+<h3 id="type动态创建类"><a href="#type动态创建类" class="headerlink" title="type动态创建类"></a>type动态创建类</h3><p>type： 创建类的类<br>第一个参数，继承自哪里，若继承obj则（）<br>第二个参数，传入的方法或者属性。<br>User &#x3D; type(“User”, (), {})</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">class MetaClass(type):</span><br><span class="line">    def __new__(cls, *args, **kwargs):</span><br><span class="line">        return super().__new__(cls, *args, **kwargs)</span><br><span class="line"></span><br><span class="line">from collections.abc import *</span><br><span class="line"></span><br><span class="line">#什么是元类， 元类是创建类的类 对象&lt;-class(对象)&lt;-type</span><br><span class="line">class User(metaclass=MetaClass):</span><br><span class="line">    def __init__(self, name):</span><br><span class="line">        self.name = name</span><br><span class="line">    def __str__(self):</span><br><span class="line">        return &quot;user&quot;</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    User = type(&quot;User&quot;, (BaseClass, ), &#123;&quot;name&quot;:&quot;user&quot;, &quot;say&quot;:say&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="simple-orm"><a href="#simple-orm" class="headerlink" title="simple orm"></a>simple orm</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 需求</span><br><span class="line">import numbers</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class Field:</span><br><span class="line">    pass</span><br><span class="line"></span><br><span class="line">class IntField(Field):</span><br><span class="line">    # 数据描述符</span><br><span class="line">    def __init__(self, db_column, min_value=None, max_value=None):</span><br><span class="line">        self._value = None</span><br><span class="line">        self.min_value = min_value</span><br><span class="line">        self.max_value = max_value</span><br><span class="line">        self.db_column = db_column</span><br><span class="line">        if min_value is not None:</span><br><span class="line">            if not isinstance(min_value, numbers.Integral):</span><br><span class="line">                raise ValueError(&quot;min_value must be int&quot;)</span><br><span class="line">            elif min_value &lt; 0:</span><br><span class="line">                raise ValueError(&quot;min_value must be positive int&quot;)</span><br><span class="line">        if max_value is not None:</span><br><span class="line">            if not isinstance(max_value, numbers.Integral):</span><br><span class="line">                raise ValueError(&quot;max_value must be int&quot;)</span><br><span class="line">            elif max_value &lt; 0:</span><br><span class="line">                raise ValueError(&quot;max_value must be positive int&quot;)</span><br><span class="line">        if min_value is not None and max_value is not None:</span><br><span class="line">            if min_value &gt; max_value:</span><br><span class="line">                raise ValueError(&quot;min_value must be smaller than max_value&quot;)</span><br><span class="line"></span><br><span class="line">    def __get__(self, instance, owner):</span><br><span class="line">        return self._value</span><br><span class="line"></span><br><span class="line">    def __set__(self, instance, value):</span><br><span class="line">        if not isinstance(value, numbers.Integral):</span><br><span class="line">            raise ValueError(&quot;int value need&quot;)</span><br><span class="line">        if value &lt; self.min_value or value &gt; self.max_value:</span><br><span class="line">            raise ValueError(&quot;value must between min_value and max_value&quot;)</span><br><span class="line">        self._value = value</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class CharField(Field):</span><br><span class="line">    def __init__(self, db_column, max_length=None):</span><br><span class="line">        self._value = None</span><br><span class="line">        self.db_column = db_column</span><br><span class="line">        if max_length is None:</span><br><span class="line">            raise ValueError(&quot;you must spcify max_lenth for charfiled&quot;)</span><br><span class="line">        self.max_length = max_length</span><br><span class="line"></span><br><span class="line">    def __get__(self, instance, owner):</span><br><span class="line">        return self._value</span><br><span class="line"></span><br><span class="line">    def __set__(self, instance, value):</span><br><span class="line">        if not isinstance(value, str):</span><br><span class="line">            raise ValueError(&quot;string value need&quot;)</span><br><span class="line">        if len(value) &gt; self.max_length:</span><br><span class="line">            raise ValueError(&quot;value len excess len of max_length&quot;)</span><br><span class="line">        self._value = value</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class ModelMetaClass(type):</span><br><span class="line">    def __new__(cls, name, bases, attrs, **kwargs):</span><br><span class="line">        if name == &quot;BaseModel&quot;:</span><br><span class="line">            return super().__new__(cls, name, bases, attrs, **kwargs)</span><br><span class="line">        fields = &#123;&#125;</span><br><span class="line">        for key, value in attrs.items():</span><br><span class="line">            if isinstance(value, Field):</span><br><span class="line">                fields[key] = value</span><br><span class="line">        attrs_meta = attrs.get(&quot;Meta&quot;, None)</span><br><span class="line">        _meta = &#123;&#125;</span><br><span class="line">        db_table = name.lower()</span><br><span class="line">        if attrs_meta is not None:</span><br><span class="line">            table = getattr(attrs_meta, &quot;db_table&quot;, None)</span><br><span class="line">            if table is not None:</span><br><span class="line">                db_table = table</span><br><span class="line">        _meta[&quot;db_table&quot;] = db_table</span><br><span class="line">        attrs[&quot;_meta&quot;] = _meta</span><br><span class="line">        attrs[&quot;fields&quot;] = fields</span><br><span class="line">        del attrs[&quot;Meta&quot;]</span><br><span class="line">        return super().__new__(cls, name, bases, attrs, **kwargs)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class BaseModel(metaclass=ModelMetaClass):</span><br><span class="line">    def __init__(self, *args, **kwargs):</span><br><span class="line">        for key, value in kwargs.items():</span><br><span class="line">            setattr(self, key, value)</span><br><span class="line">        return super().__init__()</span><br><span class="line"></span><br><span class="line">    def save(self):</span><br><span class="line">        fields = []</span><br><span class="line">        values = []</span><br><span class="line">        for key, value in self.fields.items():</span><br><span class="line">            db_column = value.db_column</span><br><span class="line">            if db_column is None:</span><br><span class="line">                db_column = key.lower()</span><br><span class="line">            fields.append(db_column)</span><br><span class="line">            value = getattr(self, key)</span><br><span class="line">            values.append(str(value))</span><br><span class="line"></span><br><span class="line">        sql = &quot;insert &#123;db_table&#125;(&#123;fields&#125;) value(&#123;values&#125;)&quot;.format(db_table=self._meta[&quot;db_table&quot;],</span><br><span class="line">                                                                   fields=&quot;,&quot;.join(fields), values=&quot;,&quot;.join(values))</span><br><span class="line">        pass</span><br><span class="line"></span><br><span class="line">class User(BaseModel):</span><br><span class="line">    name = CharField(db_column=&quot;name&quot;, max_length=10)</span><br><span class="line">    age = IntField(db_column=&quot;age&quot;, min_value=1, max_value=100)</span><br><span class="line"></span><br><span class="line">    class Meta:</span><br><span class="line">        db_table = &quot;user&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    user = User(name=&quot;bobby&quot;, age=28)</span><br><span class="line">    # user.name = &quot;bobby&quot;</span><br><span class="line">    # user.age = 28</span><br><span class="line">    user.save()</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
       <categories>
-        <category>tech</category>
+        <category>python</category>
       </categories>
       <tags>
-        <tag>xpath</tag>
+        <tag>python 元编程</tag>
       </tags>
   </entry>
   <entry>
-    <title>Louvre</title>
-    <url>/2018/11/03/2018-11-03-Louvre/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>18 年 11 月 2 日第一次参观卢浮宫，带给自己的绝不仅仅是震撼，法国人民保护历史的观念可能早从拿破仑时代就有开始，短短几百年，卢浮宫已经收猎了来自法国本土，欧洲，埃及，希腊，近东等地的珍贵文物，这些文物没有因为战争而被毁坏，也没有因为中国文化大革命这般把自己的历史全盘抹去，讽刺的是中国三十年河东，三十年又河西，一会要全面反传统，一面又要文化传播弘扬主旋律，一味建什么孔子学院，试问一个民族如果连自己都不坚持或信任自己的体制或者文化，又谈怎么宣传，皇帝的新装在中国活生生上演。</p>
-<p>这个时代活脱脱是一个闹剧，一切历史都可以被赢家粉饰。我在意识到卢浮宫到底是多么宏伟的一霎那泪水差点蹦出来，之前对法国人不甚了解，他们其实很会自嘲，也有很强的精神领域，浪漫或者艺术只是表面，他们有着对人类文明的捍卫观念，从某个角度上来说，他们的年轻人相比其他国家的年轻人更可能发现人为什么活着。毕竟在欧洲有太多机会接触到不同的文化和事物，不容易对世界有那种非黑即白的认知，世界太大，荣华富贵都是过往云烟，一味的物质其实真的只是浅薄和无知，当我看到卢浮宫有着世界文明那般程度的浓缩之后，一霎那我用一天的时间走完了世界几千年。也罢，对酒当歌，人生几何，作为一个人更需要明白你自己为什么活着，能不能做出一些贡献，有自己的精神场，才是我现期的要务了罢。</p>
-]]></content>
+    <title>python迭代协议</title>
+    <url>/2021/09/25/2021-9-25-python%E8%BF%AD%E4%BB%A3%E5%8D%8F%E8%AE%AE/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="Iterator-amp-Iterable"><a href="#Iterator-amp-Iterable" class="headerlink" title="Iterator &amp; Iterable"></a>Iterator &amp; Iterable</h3><p>迭代器是访问集合内元素的一种方式， 一般用来遍历数据<br>迭代器Iterator和以下标的访问方式不一样， 迭代器是不能返回的, 迭代器提供了一种惰性方式数据的方式.<br>list内部只实现了__iter__，而没有实现__next__,list是iterable，但不是迭代器。</p>
+<p>自己定义可迭代对象的时候，注意设计模式，不要把可迭代对象和迭代器混在一个class里，用单独的迭代器去管理index，设置__next__，在可迭代对象里只要__iter__返回一个迭代器就好</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">from collections.abc import Iterator</span><br><span class="line"></span><br><span class="line">class Company(object):</span><br><span class="line">    def __init__(self, employee_list):</span><br><span class="line">        self.employee = employee_list</span><br><span class="line"></span><br><span class="line">    def __iter__(self):</span><br><span class="line">        return MyItera·tor(self.employee)</span><br><span class="line"></span><br><span class="line">    # def __getitem__(self, item):</span><br><span class="line">    #     return self.employee[item]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class MyIterator(Iterator):</span><br><span class="line">    def __init__(self, employee_list):</span><br><span class="line">        self.iter_list = employee_list</span><br><span class="line">        self.index = 0</span><br><span class="line"></span><br><span class="line">    def __next__(self):</span><br><span class="line">        #真正返回迭代值的逻辑</span><br><span class="line">        try:</span><br><span class="line">            word = self.iter_list[self.index]</span><br><span class="line">        except IndexError:</span><br><span class="line">            raise StopIteration</span><br><span class="line">        self.index += 1</span><br><span class="line">        return word</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    company = Company([&quot;tom&quot;, &quot;bob&quot;, &quot;jane&quot;])</span><br><span class="line">    my_itor = iter(company)</span><br><span class="line">    # while True:</span><br><span class="line">    #     try:</span><br><span class="line">    #         print (next(my_itor))</span><br><span class="line">    #     except StopIteration:</span><br><span class="line">    #         pass</span><br><span class="line"></span><br><span class="line">    # next(my_itor)</span><br><span class="line">    for item in company:</span><br><span class="line">        print (item)</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
-        <category>personal</category>
+        <category>python</category>
       </categories>
       <tags>
-        <tag>日记</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>断舍离</title>
-    <url>/2017/12/27/2017-12-27-%E6%96%AD%E8%88%8D%E7%A6%BB/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>生活在一个物质亢余的年代是辛苦的，所有人都拼命得到物质，人与人评价的标准无非是金钱，女人，地位，这些标准面目可憎，令人厌恶，每次我回到家姥姥都滔滔不绝地说我太瘦要多吃饭，穿的太少赶紧买衣服，我知道她本质上是为我好；可这些东西与她有什么关系？吃多少穿什么是我自己的事情，与她有什么关系？难道我不知道自己喜欢什么生活方式？中国人的家庭最令我讨厌的是总有人喜欢对他人生活指手画脚，这些点让我拼命的想逃离家庭的束缚。</p>
-<p>现代社会难能可贵的是断舍离，抛弃一切不是必须的东西，享受极简主义的生活方式，落实到家庭生活中 80%都是些鸡毛蒜皮的琐事，而我们却被这些琐事占据了大量的精力心神，要享受纯粹的生活必须放弃亢余的物质，扔掉 80%不常用的衣服，物件。</p>
-]]></content>
-      <categories>
-        <category>personal</category>
-      </categories>
-      <tags>
-        <tag>日记</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>终身学习读书笔记</title>
-    <url>/2017/12/24/2017-12-24-%E7%BB%88%E8%BA%AB%E5%AD%A6%E4%B9%A0%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="教育模式"><a href="#教育模式" class="headerlink" title="教育模式"></a>教育模式</h2><p>教育制度分为三种，第一种所谓应试教育，运用考试的力量迫使学生学习，这种方式学生的参与性较低，但却是最公平的方式，无论是寒门还是贵子都要参与统一的考试，这种方式着重把学生培育成一件工具，或是一台机器，即培养所谓对社会有用的人，或有用的工具。</p>
-<p>第二种为素质教育，这其实是着重培养中产阶级的教育方式，除学习之外会要求学生有很多的兴趣爱好，美国主要倡导的即这种方式，常青藤常常要求学生积极参与社会活动，体育运动，这些贵族运动其实无形之中把贫穷的学习拒之门外；比较与中国阶级流动的减缓停滞，美国形成了阶级的固化，如果从小没有相应的环境培养各类兴趣爱好很好进入好的大学。</p>
-<p>素质教育的核心是成为一个更好的人，本质上成为更好的自己是为了被利用，而第三种，也是最高层的教育模式却对此不屑一顾，他们只需要利用管理他人，相比前两种模式第三种教育只注重培养学生做决策的能力，他们培养出的学生可以不会做 ppt 也可以不会 excel，他们只需要在正确的时机做出正确的决定。在这种教育模式下，教授会对学生比较宽松，他们会要求学生无论是好是坏，为自己所做出的决定负责。</p>
-<h2 id="知行合一"><a href="#知行合一" class="headerlink" title="知行合一"></a>知行合一</h2><p>在互联网时代下，地位背景金钱等等都变得不再重要，唯一重要的东西是认知，有钱并不能保证你赚更多的钱，有高人一等的认知会在这个世纪胜出，一个行业的更迭可能只有十几年，旧的知识体系在新的时代下经受不住挑战，要胜出就要不断改进自己的认知结构，终身学习，先提升认识确定超人一等的目标，再用行动和执行力妥善跟上自己思想的步伐，言必至，行必果。</p>
-<p>认知升级的途径：</p>
-<p>1） 承认自己的无知，承认自己不知道 （万物皆有裂痕，那是光照进来的地方）<br>2） 采取行动，把知道变成行动<br>3） 永远和比你知道的多的人在一起</p>
-<h2 id="一只眼死两只眼活"><a href="#一只眼死两只眼活" class="headerlink" title="一只眼死两只眼活"></a>一只眼死两只眼活</h2><p>培养两种以上的禀赋，在一个领域做到前 1%是非常困难的，可是在两个不同的领域做到前 10%就不是那么难，考虑到知识的更新换代，有两种不同的禀赋相长相承有更有助于职业的发展和个人的进步。</p>
-<p>在查理芒格的穷查理宝典中更强调了这一点，查理甚至建议一百种左右的跨学科学习。</p>
-]]></content>
-      <categories>
-        <category>personal</category>
-      </categories>
-      <tags>
-        <tag>日记</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>reckless</title>
-    <url>/2017/11/19/2017-11-09-reckless/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>最近在比较好的循环当中，工作解决了不少问题，心态也逐渐回归平静。</p>
-<p>是要在冒险与宁静中找一个平衡点的，要经常做一些比较新奇的事情，不需要考虑后果与影响，年轻就该是 reckless。</p>
-<p>听见一个故事还是很感动，Chenhao 告诉我，她刚毕业不久后孤身去云南，本来只是一时兴起，可后来她临时决定徒步去西藏，这一路就是几个月，途中经历了不少麻烦，能搭到便车她会蹭一下，有时候也有来自全国各地的驴友，可大多时候就真的只是一个人而已，忍受无尽的孤单，也许有时候找不到借宿的地方，还会忍饥挨饿。</p>
-<p>其实没有什么事情是做不了的，做事也不需要太计较利弊得失，人在大多数时候就是说的太多，做的太少，我在每一阶段做出的最有利于我自己的决策，可能在别人看来也不过是井底之蛙的举动而已，要超越，更多时候需要自己不懈的努力，附加卓越的经历，这些经历会让你看得更远，你要让你自己变得更有趣，更生动，成为一个更为真实的人，无论利弊得失，坦率的分享自己的过去，坦率的面对自己的弱点，坦率的面对自己做不喜欢让人触碰的东西，只有你自己认识到了自己的问题，才有机会去克服并改变。</p>
-]]></content>
-      <categories>
-        <category>personal</category>
-      </categories>
-      <tags>
-        <tag>日记</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Review</title>
-    <url>/2017/11/17/2017-11-17-Review/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>1 举出 3-5 件过去发生的不好的事，写下对自己的积极信息，可能对未来产生好的影响？</p>
-<ul>
-<li>体育不好，从小不太合群 — 生活独立，可以自己自由地去做喜欢的事情，看了不少书。</li>
-<li>大学荒废了几年时间，没有形成核心竞争力 — 把想玩的玩了一遍，之后可以更专心的工作学习，这段时间对我来说更多是试错；经历了几段感情，人变得更为成熟。</li>
-<li>高考差了几分，没考上同济 — 即使上了也是语言类，其实今后怎样更多还是看自己的决策智慧，是否敢于做出突破和改变。</li>
-<li>自卑，小城市长大 — 首先要正视自己的过去和弱点，不能逃避，勇敢生活并做出改变，尝试解决问题 rather than 避重就轻</li>
-</ul>
-<p>2 检视一下最近做的事中哪些对当下有好处但对未来几乎没有价值甚至有害，你决定减少哪件事的频率，会采取哪些方法？</p>
-<ul>
-<li>玩手机游戏，再次陷入了沉迷的怪圈 — 卸载街篮</li>
-</ul>
-<p>3 列举 3-5 件做过最有成就感的事， 列举对自己或他人的影响。</p>
-<ul>
-<li>通过 AA L1</li>
-<li>帮俄罗斯女生写了篇 R 的论文</li>
-<li>通过 CPA 的几门考试，考入 MBA</li>
-<li>学了几门编程语言，英语熟练交流</li>
-<li>自己制作游戏机</li>
-</ul>
-<p>使我意识到了通过自己的努力 literally 我可以实现任何事，nothing is impossible， just do it.</p>
-<p>4 列举 3-5 个未来五年打算实现的目标，如何实现它。</p>
-<ul>
-<li>成为一名编程高手，一个黑客。</li>
-<li>在技术领域成为专家，实现兴趣与工作的结合</li>
-<li>成为一个合格的管理者和沟通者</li>
-<li>找到真爱，哈哈哈</li>
-</ul>
-<p>5 除了工作，写下 3-5 件打算每周去做的让自己放松下的事情。</p>
-<ul>
-<li>玩游戏（注意不能玩网游）</li>
-<li>看书，每周至少五小时，可以是英文也可以是中文</li>
-<li>做一件之前没做过的新鲜的事</li>
-<li>youtube</li>
-<li>有声书</li>
-<li>锻炼</li>
-</ul>
-<p>6 写下一件打算长期保持的爱好，每周多少时间去做这件事。</p>
-<ul>
-<li>编程，5 小时以上</li>
-</ul>
-]]></content>
-      <categories>
-        <category>personal</category>
-      </categories>
-      <tags>
-        <tag>日记</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>reflect</title>
-    <url>/2016/09/27/2016-09-27-Reflect/</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="db85758617e8704b5d7ba2325f030faebb171d1da42b02287f1dc61ab32a48de">4a7408545c00d6cdacf7a599bcddb9e9ad9df8781f0b6f371b7519cf1ba60458a5f75a83d1bd8e98e8d359f5db617afb0483ec12ce19d495ef000d680406e7410ac6073615cdd280e2b673302d16a1194058f9ef2718deff49679056fe86f49f8bf03263e52d0f60cec3f5a5544c1729bc84aac535b261b0de77a9393eef4088a123b0a5780d707ac6fa7bf63d97cc764e304ff99c03d469080cbf2a851751ab06193f847bc0bc76f943f0fd765e2f8ce107ca265cca1548e8b283ae109c62e267347091927813e2cbfd71dea5f29a05fb9d91df298b4eeaea40a934a79dbb300f12f9f7ac5156e817cb8b2391058ec32d2a0e3c006e09a5f66a47d46c4cd11b5f6661b7ff871ca85f5edf0d3782eaa59ec038e7fffa43a17e9f9372dc7acf3eba0b0dea7d027d1a60f45c549f7af9a669263e621af737254f85b9599db7e9d88e077cc7f05a574c9f55c8a4d08d3b0205d17f41b2db2f20d1a7abbb0466aa32e0b66859dc48e22fcd2842833e2287f230948de0f16cabdf1e3f8c7d96f852e683b76a62b902fae2d1bf13065a1f77b98b6185beb28d90676ce7637406d80522eb4152eba88ddf28b6f5efe135d7e315cfe0d8ee909037850be6806a0986639c6aea3a28e7f0d5d0ef5db69d59ceac65507aa1e2ba4d9f3706bd090839c5e91a2995f8ac3a9863a7f70ce2617ca1fd60254232bd98d136ba91ab17d196ca42371178fa64019c555d8cb5bef7de67beb3c74c72083053164c3e672f745615ccdf2298f7a055e54c8fb9f17d457a6187d3adb6da3be32e656c61527af3af1327d5b4c34b1204283895f27e0ff7c5a9d0e62fc2b1c28e03181a436c5bb36f1c1bb42cf662af9f5f2e908b77fcd9ea29ce786b41788930c1ba3bf9dc54e5b39e3656604c9c33aed222f5d8c15f7d405c8a30677180d5775ad9807d2b907f2f070546256f971c2b8efd865500f933c63ad4665640d4240f524e1ef8bc8f8e8517b160200e9affcf9805b674c12fdec6dd3d550246379fdbc43bf5c9d0bd976095f5c858a1fad5d0918fd1b7b1c81d7a68c7f0f8394f0b68abc1d520f2e0a889854841a10286e067cbbc94a2fc49a0f54ec3344b085583d0d1dd891ce7519aaec3a9c429bce1b44219a68695d754930dcb1262737b34bcd2bde3d3f239c446590b0254c07c7e4c09a6dc54aab1cf4e3366cee5569e6cc75b5545d2718bcbc25a64f1be8bbe4c3c2cb3d2b648592c4a24b3918c4a03adc552f7316cff826b08250cfac5450fe87cee6e36cb9e8515ac853ad55f626cc5b5e75d551ec1ce45bd8ee799185f8adf167b1674c6dc76ab6fe87b0f0ad408306e086e1824ad59e823b3fd6961489ad90a64f3acfba1098998dfa486e6c6518a5af9f20b02e99d1c10b152404b8d108815eb34d8c4ee99280d769174c135b435d88500b764693604ddda02e1dff33fbcdaefde0e6307a72ca35340feadea4eafca2c5f94028b2397e6bd77766775945ece13330cd0759f77788c349d2aec7c5cc028f9bb4b84dacdbab11e4ae4c3a06a2cdef8fa9b0db6ffeac50ce2536ac91c1672c635540dc8400007463c526ddeb94243a7cb3c2f1cb237348c284707083b2a33c79b6673896c6cf47217ba464bc410549cbbae6b804e96abcbc9ea9d2265e52d08f4b7066d96550f8e11be6bd27a363524e2b08a14b3bc18da68753810a6e6c51c6e3e0b5b53076537bc8055933d948a3bc52dee7bde38591e858f0e2f86ce79c295577611af23b1e621e196e1e66112f98d71fd4a76e25973964742793688192c314151e3ccee4cc23faa0c2659a556955bbbe50423e83833d84ef96d85ce87327c8cb6b9f3eb0d76c7a80fb7fb433ca879f1595da8e77c9ce7f2dc40ace907ee7954f7d6cb827c3d5ce8c728a3e60e3e0f43d5e26dcf95b959ae86bab16094d7209a4a56e9bcce35be4a07d25138437fc97ae613cca1e52d202fd237c960898580657784eb70b6161d9c61ee1b951099c2d4344e06af78b91b87fca96cce556f25984ff3a3d2b3b7cbe901be265e07370cc1cbe4e98374f8290a4e55b02dce44cb124082b8b5a8d6b0be6599af7b476b88a714c9a5914d657f4527fa698d3c9f6c6de8dceef14e6387f226e455f9a052d6fb3451b78ae75d744136dfe15ea48b52a2faafdfd97dcd048d365ca637d91d1fb56a15b8d77167cfc813b538ec2a3859296e1f343b3cf31011f5c27b1eb556d7dfbb783cb5ccf2f18290634d94e46dcd775264e7fa11c6b6c5bfc7932775ffeab59816639cc5cdc710e2760cdfe2bd09548102b9d08fcd420f13f96d58480ef210df149fd45417c1daad67d1ee286534fc6dfb3f1a4033015eddc97a64e451ac064b462d85034b51e8e9064058a9e1e3be053d4803298109f16007c7dca0e7e0a2e8af804b86763ca1e0f121338b8652127eb412a933f288453a24b6ddebb9b6fe5cd085bc1f20f27026b481a8ec032f32be317d7874cc8f2dee886190f8289ecc28f9f1588dbcaabb7ecef85ef44604c11a4615a42260ca9476698bd0e84029256ccc929fb3e57a7c231d3ecb5d09896f2471123f1897d6b4a4f506099d1bdbecac3a41f52629c0eb535ab53f357067981fdc6353359e2472db4e7853034bab96eff7bc71bc29746598d5d7460b6b54c1f0446980afd5d5901721bf3c0d34e1646fa71f17d8a73c3492e5880eccb1e134e8296f53c009282445aeec7f02c844cdffe68469cbe8a72a4c049ebc568b09e8404dccbf9c0ab7435c21fcf243d4a789e0bfa3025871615082f2c23834d87aee45ab340d7456b9ee72329c22df497a181e45ca6bf6897177c99e239e61b2a23adcfce54c7831ffa4fa57dd2af952976e1501e6a373242c0aca26d82172836512e2528b5d3a663a50ae117e63d61fa5da85708037d205ee6aa4adb33fdbd1ffa51f72204863ab973f0e084452b858fe8aa382cbfd49a880a0c7b0e0135c0afd2dd88505b57222362be9ece1ae86d8c9c83730b7b7fa11aa767cf888d322e5bbfb0499208e3637b3c7a54060ba7baf4c5f9d9f30de311c6ca5e07784f807bbcd3017a24369017e1abc03959d1999bdea3548cbf601215234e138decdef624ab161434db10e47120363a8bb5216aa7163f7b34271e76fa4b6236aa625dd6d718c80be6feb978eef3d164ca7035fae5c89b8783e5b3105083c5595c96032e955a4cf3c31a317f0925148a61cc9cb228f483effe2db37eeab2a17af96b2b2bab894a3137ba85afea1059bedeca81ab0fc54930399d00148c7f5eca48fc0999f2bfce939dbb847bce1d2c0dd7cb8b3086b8bf4c98b5311657dc442bde0127147a84fbd3542f2946d308c247fb64b1eb0bda9ecdd26759b007d23b9603d3dcc4a87b9e4f4d9d32c0e286b761e7e9a4143aa780f3a75f4338232ca60da578eb5ff047669e1e2379443f38cd521360cf85ffd6460df7efa9501e4e63b06d759308167796cd7e2ca89de9c44a2ad11284e56ac58298d6799560ae823f45f4630c0ace65fa18729fd162704c8fefc64ab62d130ad21e0b372a7911e2c5d0679968644079a9222a5f0affb7ef9f04f89575b6b1b9ff8e9807dd6e213416ca420c3a82a22fd4533e38e64f3bc41c84e6ce0408acb90bcdbc9047391868ce58695788b7958dd34e5d270920cce8ec941a32d23d0f2fa5594bc26978995fec2b3e1745fe38dfc0cd40ddb72d60fa919a8fb0758807e4abd127a9340337d247d10d073ada0d71d76f94cecc70a145fb89cd09ecabc24ff825596f3760281049c2bc5daf19299b3705191f2ada8dc314adc537d413ac04783feea7cdfe99dcc9d90361b5355fd5dc0326290af3f888e67e515139cd77699707c4269b393bd2aa87b86ab8ce568abff275b656eceef38659bd568dbc88746c5f491f6468752fb8b881be054ec42954e00af39a0a33fe6ebba19eec443de5f89106a01e819ae6c04d9f8f361997df7cf7b7efc9277b69ce54bc0bd4ec07fc9b2c9b14fdb1f6cc98570984ce4bef3e52609f528fe11877cc90a092d83c940d91807ace10149d95da5f08501cd22f3caf66f9c52953840f978fca3260a3fec49a580f5eddd2854660cebfd253c4f402fd9ec881b1bb390a303fd4edc53c253b73495d417074e7029be82f094e8634b6a5914f5ab84a9ad01133ce652deba374c7b82cf6b990832e862b257f70b4c3b734ae934a36154cc7b157bc7f50b72d9f97992bb4e0b65f9f57c9862c670d625048f24789f2402688ee78c3af9e31b5bfbaabab970a43b2ca7b487e2305a3aaf8a5a6a9c2cae991a4b4f5297c845e0337d16465a2ce69d61431c804805d714a57af65c26398a33f5d91c99be729d3f987912a7f53217cb2adad97c0a0fab66ecbdbe8a6a661b00ba70656987ca3b1c15df43d89f14629d2ae0693b3125d270b303cde35442ea2d049ed4003656f3a55fc8a64519ecab3336c90b3b19b526134a1863a1ada5ea55ee065af0422e21c60282421f8b1a9ab3d42dc06881dd5a4f09e3d84250eaa324befa0516ad4744ca0deee5703e57706374354a8e6e10b483d3c2fbe96b9f549aad66e9129e28c3ed261df7dbee2b4f9a64e91df6cd0778e64fd655ec16e6fa8f8fd61678c1f1319da035b2d4e7bcb087e5e4cf8e645050cecac8be6733bd3cf057e8303d02309fbc214d50faf1706fc2366610a82a13e060368a0fdc2eccedcff1d3cdfbc724e465fa5741aef5abc0990310e99b5016273405d31613132ab9f8442de47a52c8bf348bd80ed224dd9b3aab9729ec8c603d8457565faf4c45418b2214586596d0dd27bffdef6fb7596e5371a2eb7f23dbc75a9080a6629aa7d5fb3fa67f2002176e5de20a0deededf411fd4dd1fe5d84fa3975c407210b4c211ca8dd69ab25c00aab83bda2f44145b91459010fc8c86e41ea69cae3efb5820da19da42a516ef68b187e265419deb4c2cf9fd02f703a306127fc8b19e46807339e71c12ddee74efad5d67e5b9b889f38c287910ba35096a8f04e57606520e98da9caa30dc5075324903dd400261440befc06a54af9157caa24bfd2323df8fd8c00d21ecc2301d579678039cae0d75f35543a4a495cf08246602fae7b668d2cb73c7cc6052601cec2bccdf2c708507beb74327d4deedbcb5d84812270c055642c010751135a55b092aeb2de9e1caa49e331c1f4d11131c446ee98d2edaaf606018842298b619a6be656c05867b04a2120503f8c90ea26ecbecb6ff030ef2a6525c16253d96481f28b64ceb70db556340b691c0b435bd0cd785158f8a59ab4623ce3bbb652a71b184771cf8219c51c5ac5cf5498b2f4889a704fc3dc78400338e65801d9961239092aac7afbf2cfdd01b6ec36efec50e576bd9bec667cf1ddfa4466eb5e8e10c6ab6c224edc476f0dc114a67bc8ca99669e9c42adae0a624719b22777321131014f573106f909083c2a2054e0e71e1b7089f863dd806eafccb4cdb8c00944f4f71edfd5dfbfd3ec5c1b294178fd8b2b4dfd8e580bb4e83133e82da10d4167c7a618715557cc2ef2e700508fb6fc2d552397650101e29caf04c280fec8403c4f8c988a20ed8238a5d3951542fc96b0890c3eca4eeae9878fb9523c1b5f32c25d11f40a2ea7cf9951b64096dfca009c60a8008d3eb25a844a20243750137c6737d66b5d89574007341782c3bf8bef9119cc183806784188770b32d8a9fa9f95fabd4bda9af1f2debcaadb00b5676320bac6151c347ee77667928d8fc5174bac152b62b5c05d3c58ee3ee0eaf8c4e967d1471147a86a31573a405b62e97c91064c4b40dc6c3665c1332fed40eaf6e0e05653c49168996eec4a16a87d36b00438644a157e9c7cc932ab66874f899a791cbb5ce2283c1c9bf8aff1a6fac0f33d73a08e92e5ac472ca0e24f95cc457088186966ea7d290d6a918f76043bbf0316b38941b1d35a37ebc6d1342e0e0d129ae8021314b65b6effbd78472a0f0d8c32a33de0af368eb3e5f7ef9ccfdd479f31806f1f7a91554f96628b5e7816bd12bd35e01397c76abe558d606faed861a98410c4ff64414f68f7cefa7d4b564533dbecb065060d70aa584b93ded74e3903fbd0c0a407a0596ae045e8cae6c2dd09a73a472aeb139dfea9ef08f7bfd93dab8aca05efa1fdffa5851953f663fee448ae72e976c713d6a954e7bfb234e78508f936e360645e83a52b2ae1fabd9b1b13c0dcd3c25ca76a336ce8eded24782798c644e8c189c915a06e512ed5b423d82b3dfd866c48cee10a7b0692c986f0863dd9a5b0b07d3c58cb44ca999e5abcb86db595db49de79f01a83c40a0ddadfe3934329dfa03aa8492edcd8008ecf3a57b76f9c2e9f2d50b9b4e2b47d7629c0a066748650840ddd2b8c3c21e999e2cfd9d93e371079b689fa199d1620916b692620d3396d39742a398bd8df63339defb5d1b122960e0a011ea632942d24805acd6755759c4b5918d86b0cbd6ccbbfc1587470dfe0aa1e411cdea4beccc9ffe21f926f8f5acff5979d3361c88925dae2f406ebffe03ecbe6696a43f88326543d1cdf23cad4c76ca4534c682f1eb9cd9565b9a4fd1459ef778d0e2ee2db1c06306c84bcab93120536cf0f04748ddc421ced312835d28dc9c03ca5fd27f5b910d318f95365c588c728059f5988b5877e6e10692f83541ab0fd9c9248d5fb93313d90998c0cad69f0a57951af653be1099454e5c99b5205163071d7d5cc52c14f88841ed772f6875bf70d2f37b84b4121cd5c0e6b32a839bebd8a56aace24699c20045f59107da80d552736cf1c55faa961e65a82948be006eff9dc294724c6419912b9ba138b5b6c2bd7e10ac30d02d2a8ba78f18d905e0b89f8e8189a49b5479d868230ea710f07304f5995793ae7179eff700801deafb47a727f1d0c48fa6caab834c9d3a612192913aaa450c179bd0b8192803e3283e2952a2566df57d6da85c304dbaf5245947088e76e638d844b71a9b58c70cb4db6f06672665727c40cac0ce61044abfa627481cc73152472ea9abf89cd52a5a4537cfcfb636fae7f407b59d4dc0e691484dfd1e447f49c46fbbab7cb6614fb8f6be747f526ed3e605416cca88d9509e7ebd8d447b5140612c30a2080a92430c3b884fe06b43b89258dd49b4619cc3c15cff4db966f00e18a4d1d60b7cd9314d3075e2605bb7e90b61aa51125605a46b591c29b0dc190d33153f019d1b0658ce93e4cb55989347dc3dd7d87f66e339c27aded82f2f7ba12623d94407541ac5ac0eade44be16481787fc03f18aa0bf2f0fb29063000f92e8b8210ee902d1ed4f776a2f878ab4144747df03ab2de3355dabd11d5d6febcc4737ca94e4539004a89c539d129ec11d1f8849db90651d6e01ea3e7827fbba8b723dda126f4733662a2e8bfae934575fc82ce34b66d76c8b9ff39bf6e76cf36ca08953bb58f379814c258cc33b361811b86de49971ddf69cbdc28299d50aff4eaf1b3a819ab63e62df94e1df90b987f25feef883498b0bce56b2ea3f44f0c8ca428d873629b7db2d0b1f167fc2ccf88143469f4370c1aacd35a9a26cc8421154336c128852c32efda8d8ac58b0892f094e85bfedf55c52b7c9b967428e26eac96ab20dcbf867dcf6a6111d356d2ee819b6acb9dcfe567fd1c36433f45e24394ab9a221e65d2c05191e209fc73423c6d62d8a73544523fa9302de9e588e1c9d3439a7dde36c00a93be3b88c17cd7b2bfc70c96b8891574d8835b5be91b6fb229386f2aab5fbfda341f05bac38fe374d81fb065008eec2301394cfb5bdf28b01dd6c2d56cd2913c0788acae4cda40ba424a066cab787d94f4d0b806014ad951b612051beed6136fe4a5629046234c77b808ce890b50147a138dcecef4a2b038bdcd3e7942104e5ff7ad83239fb0339abd33355ae7d902b8eaf1547a08f326df760cf2229ab32db4d0c3b790d160859b9012e47126e2d7777210aa46992a611b3db99c8cb1d94fb64080843c94746bd5f45f8404259284b3292742cd79042ec4d17cb80766d1a3c2a13daee33c2f827173c30f295e018ae140c63fee05e8bc68b4d9ef12dda364f4078b57690b9d57f0dcadd14436e43f4a24f71bc49e63614e711b7291cf7952bf240e05a73336acbbcc145ea53d5dea4f69afe918cb13d1df9618cb0cc5eced1f5e2047ebd3365be5237a22dcc66828a685102bb925f36f4711dc24845d69f3158c09b4642e5aeeaff846cb37069eccf7d6d83fa4bd245fbb608b091e97302844565615c37bd6019128a2448c57a4da5da4581f35fe13fd6f3562f8eb39be653c23de22a6161b25857ec46ad2e52bc1e89f61fcb7a8e90da6c9ecb4e8e1b6e5c3d11a851159e4f24b1bfc6de940d6e675f49dfe68a8c18e24a6c258eacafd499be4c08186fa6b8fc0018606c1e5c7eabdb486baacf534e309d2670ee5ce2717774c10faec11b28a2c3b3d13d4f2f5b57d7fdb4833057a46c21d783054964bcc799f831b4bdfe62411a5c5a0ea439579cfe09a85c728be96110748f9920e23c4519ef0dc3f7aee7a4bb83410ebc2f5f1092725</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-default">
-      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>
-      </label>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      <categories>
-        <category>personal</category>
-      </categories>
-      <tags>
-        <tag>日记</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MARKDOWN学习笔记</title>
-    <url>/2014/09/05/2014-09-05-MARKDOWN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="Markdown-的基本格式"><a href="#Markdown-的基本格式" class="headerlink" title="Markdown 的基本格式"></a>Markdown 的基本格式</h3><p>文字前加#号代表后面的文字的字号会变大，显示为标题，#号数量越多，代表字号越小，标题层级越低，而单独一个#就是最高一级的标题。</p>
-<p>特别注意#号和文字之间一定要有一个空格。</p>
-<h3 id="段落"><a href="#段落" class="headerlink" title="段落"></a>段落</h3><p>当你写完一段文字，如何开始下一段呢？仅仅回车换行一次是不管用的，需要多一次回车，总共两次回车换行才行，也就是说需要空出一行来。</p>
-<p>因为 Markdown 中用一个或一个以上的空行来分割段落，这里的空行是指真的空出了一行，就是写完一段后需要两次回车。</p>
-<h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3><p>只需要在列表的每一项前面加<em>号，</em>号和文字之间注意要留空格。</p>
-<p>如果想要有数字序号的列表呢，只要把*改成相应的 1.，2.等就好了，注意数字后面要有.</p>
-<h3 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h3><p>有时想要引用别人的一段话，只要在引用的文字前加&gt;，连续多行添加&gt;了的文字，将变成一个引用的区块。</p>
-<h3 id="链接和图片"><a href="#链接和图片" class="headerlink" title="链接和图片"></a>链接和图片</h3><p>在 Markdown 中，插入链接不需要其他按钮，你只需要使用 <a href="%E9%93%BE%E6%8E%A5%E5%9C%B0%E5%9D%80"></a> 这样的语法即可，例如：</p>
-<pre><code>[安东尼](http://renshou753.github.io)
-</code></pre>
-<p>在 Markdown 中，插入图片不需要其他按钮，你只需要使用 感叹号+<a href="%E5%9B%BE%E7%89%87%E5%9C%B0%E5%9D%80"></a> 这样的语法即可，例如：</p>
-<pre><code>![](http://)
-</code></pre>
-<h3 id="粗体斜体"><a href="#粗体斜体" class="headerlink" title="粗体斜体"></a>粗体斜体</h3><p>Markdown 的粗体和斜体也非常简单，用两个 _ 包含一段文本就是粗体的语法，用一个 _ 包含一段文本就是斜体的语法。</p>
-]]></content>
-      <categories>
-        <category>tech</category>
-      </categories>
-      <tags>
-        <tag>markdown</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>考试</title>
-    <url>/2014/07/01/2014-07-01-%E8%80%83%E8%AF%95/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>不懂为什么大家都那么努力去学习考试，明明感觉在中国这个社会是不起什么作用的，Google，FB 那些互联网公司似乎一到中国就变得水土不符。J 说比考试自己永远比不过我们，但是他能利用那些考试好的人的心理，既懂西方那一套，也了解中国的国情，这就是他自己的优势。做人关键在于选择和定位，不能拘泥于待在一个地方，也不必把梦想当成一套房子那么 cheap。有本领做自己喜欢的事是最重要的，年轻应该去每个地方看看，赚钱只是途径而不是目的，他觉得某些东西不合理因为已经扭曲了人性，纽约香港这样繁华的多的地方反而更尊重各人的爱好和生活，国人却所有人都沉浸在一种狂热的金钱崇拜和成功学炒作中，反人性的东西真的最终能成功么，really doubt it. 索性泡吧，夜店，为何需要感性，如若不关自己的事为什么要去浪费自己的时间关心别人，年轻人给自己背负太多的感情包袱就是自讨苦吃。</p>
-<ul>
-<li>最后一滴泪 别让他落下</li>
-<li>天涯如此大 我们要去哪</li>
-<li>你说你也渴望一个温暖的家</li>
-<li>我说我也渴望那个梦中的她</li>
-<li>最后一杯酒 我们干了吧</li>
-<li>天就要亮了 你别再哭了</li>
-<li>我们都曾经年少轻狂</li>
-<li>我们都曾经流浪四方</li>
-<li>如果回去十年 那个年幼的我</li>
-<li>如果回去十年 会不会遇见</li>
-<li>如果再过十年 我们会走多远</li>
-<li>如果再过十年 会不会分别</li>
-<li>最后一滴泪 别让他落下</li>
-<li>天涯如此大 我们要去哪</li>
-<li>你说你也渴望一个温暖的家</li>
-<li>我说我也渴望那个梦中的她</li>
-<li>最后一杯酒 我们干了吧</li>
-<li>天就要亮了 你别再哭了</li>
-<li>我们都曾经年少轻狂</li>
-<li>我们都曾经流浪四方</li>
-<li>如果回去十年 那个年幼的我</li>
-<li>如果回去十年 会不会遇见</li>
-<li>如果再过十年 我们会走多远</li>
-<li>如果再过十年 会不会分别</li>
-<li>如果回去十年 那个年幼的我</li>
-<li>如果回去十年 会不会遇见</li>
-<li>如果再过十年 我们会走多远</li>
-<li>如果再过十年 会不会分别</li>
-</ul>
-]]></content>
-      <categories>
-        <category>personal</category>
-      </categories>
-      <tags>
-        <tag>日记</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>bye_bye</title>
-    <url>/2013/03/10/2013-03-10-Bye%20Bye/</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="97359e1a337821e70992c144a2b5c375be7711628484f68c4dd2d54674b6d9bf">4a7408545c00d6cdacf7a599bcddb9e9ad9df8781f0b6f371b7519cf1ba60458a5f75a83d1bd8e98e8d359f5db617afb0483ec12ce19d495ef000d680406e7410ac6073615cdd280e2b673302d16a1194058f9ef2718deff49679056fe86f49f8bf03263e52d0f60cec3f5a5544c1729bc84aac535b261b0de77a9393eef4088a123b0a5780d707ac6fa7bf63d97cc764e304ff99c03d469080cbf2a851751ab06193f847bc0bc76f943f0fd765e2f8ce107ca265cca1548e8b283ae109c62e267347091927813e2cbfd71dea5f29a05b0d34551175731c4083800b54cbfa5503efde8aed23713ec0602f7bc1d4244a91eb9d7b2aa5aef853f23b8c11ff734ed9ad0cb19437818b13e330906f60be08dce31dc03af6ab98d33e60cf2faaa174fb1bd1d4d7f71609151e1162e0d5dcc819099909ada98a5f578e3adf9a8a2c5b1c0699608c7499b5bc35a535ba416033ae4c88eaab81eb27eeaeaf600a4893286976004f56ba08550939e96b415549e3ecdc00d4df08bce53b5a3de25a5f2478fc07d1fb8c5bbaff04d0453d1a8dd59d9f7c6e87da3e7bf18d781ff84eca5ca698d8a25a71b36211a00a1cd6f3f5df0975a8a428cb2e6f38d70dd093bacef844efc93bb7a1d2c5cc7702140a975d8b15ad2db743dc31143b0f41b168ce7968f9ab760cbb9da88c3e25358cb9c2da178f1239812658f45b007a91cd9e70cec028977cbba5ecd85ce8595e0830e9815ee6df8369f276327a8e80b740ef1bbe29b8f9c1954e0b83a76c58ce12fc04d1ef4021e05add85cf3351f1409e005cf5f14570b9aa529db0ac4ac700da4bd3e53b1028b050f4baacf227bd53509c9947ecf0c62ab494cc2da194743cb23baa64f3f469852c6a1dbd1ba0f6008b84f9bbba79fbeb371c734e0e56724d055ed86f886b6a4ca253ed6ce9f2ecfb69b88c8efba8d82f3f854105c84f6a3c3215f9e840bca9535b534d00c31c2a522ed552cd348020ecce886de94bbd36d59442b8ed4e246cc45469409a3397608156eb53bce926be8921cd82251b96a50b19f7d725e11ce797ae8e6acd7ce8cd63edc198d6a72e4f9b5ed690b90a3eac58209d8990739fe45c78c5ac13a43d1eb79bb352272feded4742784f270c867644d49a19e688dbc63ea7643f07342391354828f7d23b0f251f7b9c129b8aaa919ea603bf800ea334b72b25b2e59536c1a37e815ad62800626d53b7525fa5983384396446f2ecbc15af970bf6e50a6fadad906ba19910d239bacb008769a2fb1f6d00db360515c52bdd497b8db02669749e058b0bb24b5dd2d9b5cfd32bb43a870e49707c3f5ae62bc0e5bcd401660daa5456cb828f0e7d1eb31dcf63d0df4dd5981b80e75b1382af8df8c5a154059d007eb3db49c934f156f2a70b3aa26770f1285ab2fa1cfa2ad1622aa81930a715c342d96ce198b58b1135221bd124e9d6ce69a5bebb4412e506d53fce252bcd10a96c1ef0f04797aaab68147d68a1709f84189598c00c676fb9b378281835cf0ee3fca9af5160e219110de2de1caa4be2af8309926dbd6fe1997b641726dc98b1a8f15a295b7ec96fd80bcfd763241d6c01c3abfffa4f9c3b799b562e40bb502d0f1a6486012991d14253c3142bd525de59690f782a74bd6fcace5c40bd7feb6e4e65beed3cd24c7cfb73989e5f0d0a1ab4faf97918c493866351739f3947baa8dedad384e901ab1429769c58c61c87e3fba18a9a7f1433fbaf0a348b306f1c917f7666de6c520c13cfcce7b2d97d7142edde2a720a796092f075effa3fd41e95a5b6b0b199f055c923142cd34f909857556cc515aa7a021a2f3093b35de6a3a5424610b56c1c08dbd963ada5158e3c3acbbe1c2e460f0d284d34747af450fccd57011f1b141b99bdf546511e28dfe4dd78099a70f017758a9e0209d209b4edf3c58d2acdd1f20e7b060b5b2d017198911f47710d6c0267e8a0e7405abe3e07d60f514ea3b5a13fc2627eeeb826ea9367506579d1c5fc6c365c8cb3a1e7729601612d335149b17782d2e31adfdedf97affbc92d07daca8d13323a9c0c685d0f33f1e57ed8451a608a95491a9101290bf5a0506f299f5000857fa2870aed1aa357eb175f9779ca472ff2d5ce162ce6f8df409e115ba079e8164e93ef1d80fea4c9edee0f534cbf667bb48f45fefad07c58ceffd7f0730942ff1b7426e8e1b8b2b6b81483ba2ff23e4ddb78d9896e0c64795515608f73e45e6fb3c4c93d0c275c014107622854bf8ac7dbc0a748f683e2d0e73074e1658c643d065f4bd2a327acc8bfbd1712e8b4e63a8f1d8202d7ab628ad28b9239e7d1659cae6b24b175ec32269327afc23c72acab8b46a1736c4e9c2f8d84035b7e8357b5dc6b026b71cabf8845bb1791f8cc20ff1f83304d5fe0a9879c9d67772e2b6ca563c9e4d8637e46e04e44d0118db3f4f66eb305da145a450d12df594d215d2b933bc8549b6cc5f268db2de17be6ddc126b371c837f4344840576ad806d1974fdba5e4177ccd0a7bd4aed46b1816a01972fa1bbeb04b454ea7573f60694cbae2f72755958b4c8cb4b00365b0f2c66c06b6d378d25908812a0e1647740c5cadddd2516f34c442c309e9718b904111a829a59919b71f97ce23f8a398969b7bd7fa17a58ba25d9d883b4b669e6a25a5a6c2dc8ffd13116962471a5ca2f0a2469ef490c01a0788c752e538558e7db7f548997f9a5ace1c82846dab7bebb3292136620993c2c65a6923735123f24ebc8699775a88811f96f61666f68debfb7fadadd55526b40ab2c853ef1272b0ce8d7a35fb0ebeb3041e3655b0beb4733fd4f4acf11c398d3a7f1a9eeb919c9877428bc7acb1a7bc61d10dd6f9faff0050bc74678ccfebb1bd953d3d9b73c51a5932606078d183aad12ac088c18d84842b5fb782c38be636a7335c275c94c42c47ff0f639cef977cdaa3874fe527f32e809caf8703d4fd80dd50d38030270edb5dc943e5f0e6ec544589b5b8c7fd519e31a9de3bb0a190bee16ec92ac799f8b03fd62eaa54591363aeab6d9042e8c7dd4465f0856a24f76c8e0ad3f34deeb3bf926d7f5da85d98a37f1890db7d7bfc950e2f6474f018e4bc94350eb9416144f57f6873a61c26015743c82fd93dacf1a79a744d065e74b4fd8564d8647efccffcc42978f748eb875c14baf3677e2d205258924318a98a9f940e5e8fb1fabaa199195826beddd170d2c56bfd4b4beeec3c7ea52ecf095bc467c23374128925578bedf5cbd79b443718d779cf7fa101eef821d4a34a01e976d4afcf29b86ae71fa7225353ba72798700bd991a24fa9e4df95341bdc5d36109d8320a38d0556c2b3aca09255793017170e601b8d25e3e9bc73dbae8f5910e3bcb0a22920477a7e45eb75691f56cb2deca506671bb3747c0aad1828e455a9f3d278d386f246a733ffc9f1a9e377fac4b671c96083c14fcfce74fdf0b3f6d40b25d05fcf1c2a922e069e0fdfb1e980e6b741f847598fa13d9c75821b511ed4c8b0a8582e0b6ab0f364eb8e9847e5b2055384faa23cd8c1b7ec0b247e18769aa2adab802265e5fead02948240ee6041db44bafe9d22ff182b726adc4259b249a3</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-default">
-      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>
-      </label>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      <categories>
-        <category>personal</category>
-      </categories>
-      <tags>
-        <tag>日记</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>性格测试</title>
-    <url>/2012/08/03/2012-08-03-%E6%80%A7%E6%A0%BC%E6%B5%8B%E8%AF%95/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>#ISFJ 照顾者型――值得信赖和依靠</p>
-<p>一、你的 MBTI 图形</p>
-<p>MBTI 倾向示意图(类型：ISFJ 总倾向：54)<br>外向（E）</p>
-<p>（I）内向<br>实感（S）</p>
-<p>（N）直觉<br>思考（T）</p>
-<p>（F）情感<br>判断（J）</p>
-<p>（P）知觉</p>
-<p>?倾向示意图表示四个维度分别的倾向程度。从中间往两侧看，绿色指示条对应下面坐标的哪个区间。<br>?本报告地址不会长期有效，请复制报告内容到本地或自己的博客。</p>
-<p>二、基本描述</p>
-<p>才储分析：您的性格类型倾向为“ ISFJ ”(内向 实感 情感 判断 倾向度： I100 S57 F71 J71 不假思索指数：13)</p>
-<p>沉静，友善，有责任感和谨慎。能坚定不移地承担责任。做事贯彻始终、不辞劳苦和准确无误。忠诚，替人着想，细心；往往记着他所重视的人的种种微小事情，关心别人的感受。努力创造一个有秩序、和谐的工作和家居 环境。</p>
-<p>ISFJ 型的人忠诚、有奉献精神和同情心，理解别人的感受。他们意志清醒而有责任心，乐于为人所需。 ISFJ 型的人十分务实，他们喜欢平和谦逊的人。他们喜欢利用大量的事实情况，对于细节则有很强的记力。他们耐心地 对待任务的整个阶段，喜欢事情能够清晰明确。 ISFJ 型的人具有强烈的职业道德，所以他们如果知道自己的行为真正有用时，会对需要完成之事承担责任。他们准确系统地完成任务。他们具有传统的价值观，十分保守。他 们利用符合实际的判断标准做决定，通过出色的注重实际的态度增加了稳定性。 ISFJ 型的人平和谦虚、勤奋严肃。他们温和、圆通，支持朋友和同伴。他们乐于协助别人，喜欢实际可行地帮助他人。他们利用个人热情与人 交往，在困难中与他人和睦相处。ISFJ 型的人不喜欢表达个人情感，但实际上对于大多数的情况和事件都具有强烈的个人反应。他们关心、保护朋友，愿意为朋友献身，他们有为他人服务的意识，愿意完成他们的责任和义务。</p>
-<p>您适合的领域有：领域特征不明显，较相关的如：医护领域、消费类商业、服务业领域</p>
-<p>您适合的职业有：<br>・ 内科医生<br>・ 营养师<br>・ 图书&#x2F;档案管理员<br>・ 室内装潢设计师<br>・ 顾客服务代表<br>・ 记账员<br>・ 特殊教育教师<br>・ 酒店管理<br>・ 人事管理人员<br>・ 电脑操作员<br>・ 信贷顾问<br>・ 零售业主<br>・ 房地产代理或经纪人<br>・ 艺术人员<br>・ 商品规划师<br>・ 语言病理学者<br>・ 审计师<br>・ 会计<br>・ 财务经理<br>・ 办公室行政管理<br>・ 后勤和供应管理<br>・ 中层经理<br>・ 公务（法律、税务）执行人员<br>・ 银行信贷员<br>・ 成本估价师<br>・ 保险精算师<br>・ 税务经纪人<br>・ 税务检查员<br>・ 机械、电气工程师<br>・ 计算机程序员<br>・ 数据库管理员<br>・ 地质<br>・ 气象学家<br>・ 法律研究者<br>・ 律师<br>・ 外科医生<br>・ 药剂师<br>・ 实验室技术人员<br>・ 牙科医生<br>・ 医学研究员</p>
-<p>三、气质类型</p>
-<p>根据大卫.凯尔西（David Keirsey）气质与性情理论，你属于“传统主义者”，下面是对“传统主义者”的描述：</p>
-<p>“传统主义者”相信事实、已证实的数据、过去的经验和“五官”所带给他们的信息，喜欢有结构有条理的世界，喜欢做决定，是一 种既现实又有明确目标的人。</p>
-<p>“传统主义者”是最传统的一类人，他们坚定、可靠、可信。他们重视法律、秩序、安全、得体、规则和本分。他们被一种 为社会服务的动机所驱使。他们尊重权威、等级制度和权力，而且一般具有保守的价值观。他们很有责任感，而且经常努力去做正确 的事情，这使他们可以信赖和依靠。</p>
-<p>“传统主义者”需要有归属感，需要服务于别人，需要做正确的事情。他们注重安稳、秩序、合作、前后一致和可靠，而且他们严肃 认真，工作努力。“传统主义者”在工作中对自己要求十分严格，而且他们希望别人也是如此。“传统主义者”喜欢那些与他们一样 具有奉献精神、尊重权威和尽自己的本分的同事。</p>
-<p>“传统主义者”往往是组织机构的主要支持者，不论他们是在领导层还是处于被领导的位置上。他们最常扮演的角色就是“稳定器” ――传统和现状的维护者。 大多数“传统主义者”（不论他们是属于什么判断偏好）最喜欢的是组织结构稳定、清楚、目标明确 的岗位，不喜欢处在不断变化和杂乱状况之中的职位或组织。</p>
-<p>“传统主义者”包括思维型传统主义者和情感型传统主义者，这两种传统主义者之间又有很明显的不同。情感型传统主义者常常不象 思维型传统主义者那样明显地表现出传统主义者的一般特征。在做决定时，情感型传统主义者把与别人的关系和人放在首要位置，本 能地努力寻求与他人更和睦的关系，同时不断寻找着使他们能够通过有形的方式帮助他人的机会。――――而你正属于情感型传统主义者。</p>
-<p>对于不同的性格类型而言，没有“好”与“坏”之分，每一个人都是一个独一无二的个体，都有其特别的优势和劣势，但问题的关键 在于如何认识这些优势和劣势。基于 MBTI 模型职业规划的核心法则是：“扬长避短”，学会了这一点将会影响到你的成败及你对工作的正确选择。</p>
-<p>对你的总体描述</p>
-<ol>
-<li>实际，有条理，认真仔细。</li>
-<li>注重规则、政策、契约、例行习惯和时间要求。</li>
-<li>一旦他们承诺一件事情，总会坚持完成它。</li>
-<li>在跟进、规范方面做得很好。</li>
-<li>以第一次和每一次都做了正确的事情为荣。</li>
-<li>对需要注意的事情有敏锐的洞察力。</li>
-<li>善于尽可能有效地利用现有资源完成工作。</li>
-</ol>
-<p>你潜在的弱点</p>
-<ol>
-<li>容易只看到事情有黑和白两种情况，而看不到中间的灰色地带。</li>
-<li>可能不能很快地做出改变和适应。</li>
-<li>有些此类型成员不擅长变通、缺乏想象力。</li>
-</ol>
-<p>四、优势与劣势</p>
-<p>ISFJ 的特质： 照顾者型――值得信赖和依靠</p>
-<p>优势：</p>
-<p>你具有友善、负责、认真、忠于职守的特点，只要你认为应该做的事，不管有多少麻烦都要去做，但却厌烦去做你认为毫无意义的事情。</p>
-<p>你务实、实事求是，追求具体和明确的事情，喜欢做实际的考虑。善于单独思考、收集和考察丰富的外在信息。不喜欢逻辑的思考和理论的应用，拥有对细节很强的记忆力，诸如声音的音色或面部表情。</p>
-<p>你与人交往时较为敏感，谦逊而少言、善良、有同情心，喜欢关心他人并提供实际的帮助，你们对朋友忠实友好，有奉献精神。虽然在很多情况下你有很强烈的反应，但通常不愿意将个人情感表现出来。</p>
-<p>你做事有很强的原则性，尊重约定，维护传统。工作时严谨而有条理，愿意承担责任，你依据明晰的评估和收集的信息来做决定，充分发挥自己客观的判断和敏锐的洞察力。</p>
-<p>劣势：</p>
-<p>你有高度的责任心，会陷入日常事务的细节中去，以至于没完没了的工作。每件事情你都会从头做到尾，这总是让你过度劳累，压力很大时，你会过度紧张，甚至产生消极情绪。</p>
-<p>由于你的现实、细致，有时容易忽略事情的全局和发展变化趋势，难以预见存在的可能性。建议你周到考虑解决问题的不同方法和可能性，需要增强对远景的关注。</p>
-<p>你总是替别人着想，以至于让人感觉“关心过度”，你需要学会给别人空间。在工作中，你过多的承受和忍耐，不太习惯表达，却将情绪在家庭和生活中发泄出来。</p>
-<p>你不停地制订计划并保证完成，以致于经常花费更多的时间和投入更多的精力来完成工作，建议你给自己安排必要的娱乐和放松的活动，不要总是“低头拉车”，需要考虑“抬头看路”。</p>
-<p>哪一个更加重要 ? 是得到启迪，还是在得到启迪之前得到启迪；是赚一百万美元，还是努力享受生活，即使不可能赚到一百万美元；是取得成功，还是在你努力走想成功的过程中发现的一些意义。</p>
-<p>―――― 铃木俊隆</p>
-]]></content>
-      <categories>
-        <category>personal</category>
-      </categories>
-      <tags>
-        <tag>日记</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>矛盾</title>
-    <url>/2010/05/10/2010-05-10-%E7%9F%9B%E7%9B%BE/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>做志愿者，让我接触了太多太多可爱的孩子，他们的一颦一笑和对未来的那种憧憬懵懂让我自惭形秽。<br>身体的残疾并不能掩盖他们心灵的单纯，最让我感动的那位姓张的女孩，第一天我看见她左腿没了，第二天分开托着假肢颤颤巍巍的站起来抱了我一下的时候，我清清楚楚的感觉到心中最柔软的地方狠狠的痛了一下。她就是下凡的天使，不是么。<br>多少年前，我不是也和他们一样单纯幸福着么。<br>过去之人不可追、现在之心不可安、将来之事不可知，这是万古之愁，不会变的。</p>
-<p>大学<br>太多的自由<br>可以去做自己想做的事情<br>可是<br>又没有心情 没有想见的人陪伴去做<br>这就是矛盾<br>这样不如 不要这些自由<br>要努力去爱<br>又怎么可能 有自由<br>要努力爱<br>又怎么可能 留退路<br>人一生要走过多少人，才能看清真正的缘分</p>
-]]></content>
-      <categories>
-        <category>personal</category>
-      </categories>
-      <tags>
-        <tag>日记</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>封闭2</title>
-    <url>/2010/05/03/2010-05-03-%E5%B0%81%E9%97%AD2/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>总是要经得起时间沉淀的东西才会用词语去描述，莫名的患了一种封闭的绝症，陌生人对我再好也难以对他推心置腹，总是开一些不痛不痒的玩笑敷衍过去。<br>一个人站在原野的中间，风就从我耳边吹过，好像当年的喃喃细语。随手抓了一把稻谷在手心，剥开才发现，它是没有心的。斜着头看了一眼自己的影子，傻傻的咧嘴对它一笑，可氤氲的空气中没有丝毫回应。<br>每个人都在不停寻觅，寻觅着心中的那个身影。长久以来充盈在心中的感情，却待到失去后才察觉到，察觉到曾经平凡的一点一滴。不经意间失去的，却要付出惊人的代价。即使焦急地拼命伸出手去，却只如风一般从指间流走。看似近在咫尺，其实遥不可及。</p>
-]]></content>
-      <categories>
-        <category>personal</category>
-      </categories>
-      <tags>
-        <tag>日记</tag>
+        <tag>python</tag>
       </tags>
   </entry>
 </search>
