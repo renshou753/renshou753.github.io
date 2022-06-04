@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+  
+
+    <head>
+      <meta charset="utf-8" />
+        
+      <meta name="description" content="朝露曇花，咫尺天涯，人道是黃河十曲，畢竟東流​​去。八千年玉老，一夜枯榮，問蒼天此生何必？昨夜風吹處，落英聽誰細數。九萬里蒼穹，御風弄影，誰人與共？千秋北斗，瑤宮寒苦，不若神仙眷侶，百年江湖。" />
+      
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title> Chenhao Li</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      
+<link rel="stylesheet" href="/css/fonts/remixicon.css">
+
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    <link rel="alternate" href="/atom.xml" title="Chenhao Li" type="application/atom+xml">
+</head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      
+<section class="cover">
+    
+  <div class="cover-frame">
+    <div class="bg-box">
+      <img src="/images/moganshan.jpg" alt="image frame" />
+    </div>
+    <div class="cover-inner text-center text-white">
+      <h1><a href="/">Chenhao Li</a></h1>
+      <div id="subtitle-box">
+        
+        <span id="subtitle"></span>
+        
+      </div>
+      <div>
+        
+      </div>
+    </div>
+  </div>
+  <div class="cover-learn-more">
+    <a href="javascript:void(0)" class="anchor"><i class="ri-arrow-down-line"></i></a>
+  </div>
+</section>
+
+
+
+<script src="https://cdn.staticfile.org/typed.js/2.0.12/typed.min.js"></script>
+
+
+<!-- Subtitle -->
+
+  <script>
+    try {
+      var typed = new Typed("#subtitle", {
+        strings: ['Don&#39;t forget to be awesome!', '愿你一生努力，一生被爱', '想要的都拥有，得不到的都释怀'],
+        startDelay: 0,
+        typeSpeed: 200,
+        loop: true,
+        backSpeed: 100,
+        showCursor: true
+      });
+    } catch (err) {
+      console.log(err)
+    }
+  </script>
+  
+<div id="main">
+  <section class="outer">
+  
+  
+  
+<div class="notice" style="margin-top:50px">
+    <i class="ri-heart-fill"></i>
+    <div class="notice-content">Tony小窝。</div>
+</div>
+
+
+<style>
+    .notice {
+        padding: 20px;
+        border: 1px dashed #e6e6e6;
+        color: #969696;
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        background: #fbfbfb50;
+        border-radius: 10px;
+    }
+
+    .notice i {
+        float: left;
+        color: #999;
+        font-size: 16px;
+        padding-right: 10px;
+        vertical-align: middle;
+        margin-top: -2px;
+    }
+
+    .notice-content {
+        display: initial;
+        vertical-align: middle;
+    }
+</style>
+  
+  <article class="articles">
+    
+    
+    
+    
+    <article
+  id="post-2021-9-25-python迭代协议"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/09/25/2021-9-25-python%E8%BF%AD%E4%BB%A3%E5%8D%8F%E8%AE%AE/"
+    >python迭代协议</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/09/25/2021-9-25-python%E8%BF%AD%E4%BB%A3%E5%8D%8F%E8%AE%AE/" class="article-date">
+  <time datetime="2021-09-25T13:12:59.000Z" itemprop="datePublished">2021-09-25</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/python/">python</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="Iterator-amp-Iterable"><a href="#Iterator-amp-Iterable" class="headerlink" title="Iterator &amp; Iterable"></a>Iterator &amp; Iterable</h3><p>迭代器是访问集合内元素的一种方式， 一般用来遍历数据<br>迭代器Iterator和以下标的访问方式不一样， 迭代器是不能返回的, 迭代器提供了一种惰性方式数据的方式.<br>list内部只实现了__iter__，而没有实现__next__,list是iterable，但不是迭代器。</p>
+<p>自己定义可迭代对象的时候，注意设计模式，不要把可迭代对象和迭代器混在一个class里，用单独的迭代器去管理index，设置__next__，在可迭代对象里只要__iter__返回一个迭代器就好</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">from collections.abc import Iterator</span><br><span class="line"></span><br><span class="line">class Company(object):</span><br><span class="line">    def __init__(self, employee_list):</span><br><span class="line">        self.employee = employee_list</span><br><span class="line"></span><br><span class="line">    def __iter__(self):</span><br><span class="line">        return MyItera·tor(self.employee)</span><br><span class="line"></span><br><span class="line">    # def __getitem__(self, item):</span><br><span class="line">    #     return self.employee[item]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class MyIterator(Iterator):</span><br><span class="line">    def __init__(self, employee_list):</span><br><span class="line">        self.iter_list = employee_list</span><br><span class="line">        self.index = 0</span><br><span class="line"></span><br><span class="line">    def __next__(self):</span><br><span class="line">        #真正返回迭代值的逻辑</span><br><span class="line">        try:</span><br><span class="line">            word = self.iter_list[self.index]</span><br><span class="line">        except IndexError:</span><br><span class="line">            raise StopIteration</span><br><span class="line">        self.index += 1</span><br><span class="line">        return word</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    company = Company([&quot;tom&quot;, &quot;bob&quot;, &quot;jane&quot;])</span><br><span class="line">    my_itor = iter(company)</span><br><span class="line">    # while True:</span><br><span class="line">    #     try:</span><br><span class="line">    #         print (next(my_itor))</span><br><span class="line">    #     except StopIteration:</span><br><span class="line">    #         pass</span><br><span class="line"></span><br><span class="line">    # next(my_itor)</span><br><span class="line">    for item in company:</span><br><span class="line">        print (item)</span><br></pre></td></tr></table></figure> 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-2021-9-23-python元编程"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/09/23/2021-9-23-python%E5%85%83%E7%BC%96%E7%A8%8B/"
+    >python元编程</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/09/23/2021-9-23-python%E5%85%83%E7%BC%96%E7%A8%8B/" class="article-date">
+  <time datetime="2021-09-23T15:12:59.000Z" itemprop="datePublished">2021-09-23</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/python/">python</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="getattr"><a href="#getattr" class="headerlink" title="getattr"></a><strong>getattr</strong></h3><p>‘<strong>getattr</strong>‘ 就是在查找不到属性的时候调用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">#__getattr__, __getattribute__</span><br><span class="line"></span><br><span class="line">from datetime import date</span><br><span class="line">class User:</span><br><span class="line">    def __init__(self,info=&#123;&#125;):</span><br><span class="line">        self.info = info</span><br><span class="line"></span><br><span class="line">    def __getattr__(self, item):</span><br><span class="line">        return self.info[item]</span><br><span class="line"></span><br><span class="line">    # def __getattribute__(self, item):</span><br><span class="line">    #     return &quot;bobby&quot;</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    user = User(info=&#123;&quot;company_name&quot;:&quot;imooc&quot;, &quot;name&quot;:&quot;bobby&quot;&#125;)</span><br><span class="line">    print(user.test)</span><br></pre></td></tr></table></figure>
+
+<h3 id="getattribute"><a href="#getattribute" class="headerlink" title="getattribute"></a><strong>getattribute</strong></h3><p>所有属性访问入口，控制整个类实例过程。</p>
+<h3 id="descriptor"><a href="#descriptor" class="headerlink" title="descriptor"></a>descriptor</h3><p>执行顺序：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">如果user是某个类的实例，那么user.age（以及等价的getattr(user,’age’)）</span><br><span class="line">首先调用__getattribute__。如果类定义了__getattr__方法，</span><br><span class="line">那么在__getattribute__抛出 AttributeError 的时候就会调用到__getattr__，</span><br><span class="line">而对于描述符(__get__）的调用，则是发生在__getattribute__内部的。</span><br><span class="line">user = User(), 那么user.age 顺序如下：</span><br><span class="line"></span><br><span class="line">（1）如果“age”是出现在User或其基类的__dict__中， 且age是data descriptor， 那么调用其__get__方法, 否则</span><br><span class="line"></span><br><span class="line">（2）如果“age”出现在user的__dict__中， 那么直接返回 obj.__dict__[‘age’]， 否则</span><br><span class="line"></span><br><span class="line">（3）如果“age”出现在User或其基类的__dict__中</span><br><span class="line"></span><br><span class="line">（3.1）如果age是non-data descriptor，那么调用其__get__方法， 否则</span><br><span class="line"></span><br><span class="line">（3.2）返回 __dict__[‘age’]</span><br><span class="line"></span><br><span class="line">（4）如果User有__getattr__方法，调用__getattr__方法，否则</span><br><span class="line"></span><br><span class="line">（5）抛出AttributeError</span><br></pre></td></tr></table></figure>
+
+<h3 id="new-vs-init"><a href="#new-vs-init" class="headerlink" title="new vs init"></a><strong>new</strong> vs <strong>init</strong></h3><p>new 是用来控制对象的生成过程， 在对象生成之前<br>init是用来完善对象的</p>
+<h3 id="type动态创建类"><a href="#type动态创建类" class="headerlink" title="type动态创建类"></a>type动态创建类</h3><p>type： 创建类的类<br>第一个参数，继承自哪里，若继承obj则（）<br>第二个参数，传入的方法或者属性。<br>User &#x3D; type(“User”, (), {})</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">class MetaClass(type):</span><br><span class="line">    def __new__(cls, *args, **kwargs):</span><br><span class="line">        return super().__new__(cls, *args, **kwargs)</span><br><span class="line"></span><br><span class="line">from collections.abc import *</span><br><span class="line"></span><br><span class="line">#什么是元类， 元类是创建类的类 对象&lt;-class(对象)&lt;-type</span><br><span class="line">class User(metaclass=MetaClass):</span><br><span class="line">    def __init__(self, name):</span><br><span class="line">        self.name = name</span><br><span class="line">    def __str__(self):</span><br><span class="line">        return &quot;user&quot;</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    User = type(&quot;User&quot;, (BaseClass, ), &#123;&quot;name&quot;:&quot;user&quot;, &quot;say&quot;:say&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="simple-orm"><a href="#simple-orm" class="headerlink" title="simple orm"></a>simple orm</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br></pre></td><td class="code"><pre><span class="line"># 需求</span><br><span class="line">import numbers</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class Field:</span><br><span class="line">    pass</span><br><span class="line"></span><br><span class="line">class IntField(Field):</span><br><span class="line">    # 数据描述符</span><br><span class="line">    def __init__(self, db_column, min_value=None, max_value=None):</span><br><span class="line">        self._value = None</span><br><span class="line">        self.min_value = min_value</span><br><span class="line">        self.max_value = max_value</span><br><span class="line">        self.db_column = db_column</span><br><span class="line">        if min_value is not None:</span><br><span class="line">            if not isinstance(min_value, numbers.Integral):</span><br><span class="line">                raise ValueError(&quot;min_value must be int&quot;)</span><br><span class="line">            elif min_value &lt; 0:</span><br><span class="line">                raise ValueError(&quot;min_value must be positive int&quot;)</span><br><span class="line">        if max_value is not None:</span><br><span class="line">            if not isinstance(max_value, numbers.Integral):</span><br><span class="line">                raise ValueError(&quot;max_value must be int&quot;)</span><br><span class="line">            elif max_value &lt; 0:</span><br><span class="line">                raise ValueError(&quot;max_value must be positive int&quot;)</span><br><span class="line">        if min_value is not None and max_value is not None:</span><br><span class="line">            if min_value &gt; max_value:</span><br><span class="line">                raise ValueError(&quot;min_value must be smaller than max_value&quot;)</span><br><span class="line"></span><br><span class="line">    def __get__(self, instance, owner):</span><br><span class="line">        return self._value</span><br><span class="line"></span><br><span class="line">    def __set__(self, instance, value):</span><br><span class="line">        if not isinstance(value, numbers.Integral):</span><br><span class="line">            raise ValueError(&quot;int value need&quot;)</span><br><span class="line">        if value &lt; self.min_value or value &gt; self.max_value:</span><br><span class="line">            raise ValueError(&quot;value must between min_value and max_value&quot;)</span><br><span class="line">        self._value = value</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class CharField(Field):</span><br><span class="line">    def __init__(self, db_column, max_length=None):</span><br><span class="line">        self._value = None</span><br><span class="line">        self.db_column = db_column</span><br><span class="line">        if max_length is None:</span><br><span class="line">            raise ValueError(&quot;you must spcify max_lenth for charfiled&quot;)</span><br><span class="line">        self.max_length = max_length</span><br><span class="line"></span><br><span class="line">    def __get__(self, instance, owner):</span><br><span class="line">        return self._value</span><br><span class="line"></span><br><span class="line">    def __set__(self, instance, value):</span><br><span class="line">        if not isinstance(value, str):</span><br><span class="line">            raise ValueError(&quot;string value need&quot;)</span><br><span class="line">        if len(value) &gt; self.max_length:</span><br><span class="line">            raise ValueError(&quot;value len excess len of max_length&quot;)</span><br><span class="line">        self._value = value</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class ModelMetaClass(type):</span><br><span class="line">    def __new__(cls, name, bases, attrs, **kwargs):</span><br><span class="line">        if name == &quot;BaseModel&quot;:</span><br><span class="line">            return super().__new__(cls, name, bases, attrs, **kwargs)</span><br><span class="line">        fields = &#123;&#125;</span><br><span class="line">        for key, value in attrs.items():</span><br><span class="line">            if isinstance(value, Field):</span><br><span class="line">                fields[key] = value</span><br><span class="line">        attrs_meta = attrs.get(&quot;Meta&quot;, None)</span><br><span class="line">        _meta = &#123;&#125;</span><br><span class="line">        db_table = name.lower()</span><br><span class="line">        if attrs_meta is not None:</span><br><span class="line">            table = getattr(attrs_meta, &quot;db_table&quot;, None)</span><br><span class="line">            if table is not None:</span><br><span class="line">                db_table = table</span><br><span class="line">        _meta[&quot;db_table&quot;] = db_table</span><br><span class="line">        attrs[&quot;_meta&quot;] = _meta</span><br><span class="line">        attrs[&quot;fields&quot;] = fields</span><br><span class="line">        del attrs[&quot;Meta&quot;]</span><br><span class="line">        return super().__new__(cls, name, bases, attrs, **kwargs)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class BaseModel(metaclass=ModelMetaClass):</span><br><span class="line">    def __init__(self, *args, **kwargs):</span><br><span class="line">        for key, value in kwargs.items():</span><br><span class="line">            setattr(self, key, value)</span><br><span class="line">        return super().__init__()</span><br><span class="line"></span><br><span class="line">    def save(self):</span><br><span class="line">        fields = []</span><br><span class="line">        values = []</span><br><span class="line">        for key, value in self.fields.items():</span><br><span class="line">            db_column = value.db_column</span><br><span class="line">            if db_column is None:</span><br><span class="line">                db_column = key.lower()</span><br><span class="line">            fields.append(db_column)</span><br><span class="line">            value = getattr(self, key)</span><br><span class="line">            values.append(str(value))</span><br><span class="line"></span><br><span class="line">        sql = &quot;insert &#123;db_table&#125;(&#123;fields&#125;) value(&#123;values&#125;)&quot;.format(db_table=self._meta[&quot;db_table&quot;],</span><br><span class="line">                                                                   fields=&quot;,&quot;.join(fields), values=&quot;,&quot;.join(values))</span><br><span class="line">        pass</span><br><span class="line"></span><br><span class="line">class User(BaseModel):</span><br><span class="line">    name = CharField(db_column=&quot;name&quot;, max_length=10)</span><br><span class="line">    age = IntField(db_column=&quot;age&quot;, min_value=1, max_value=100)</span><br><span class="line"></span><br><span class="line">    class Meta:</span><br><span class="line">        db_table = &quot;user&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    user = User(name=&quot;bobby&quot;, age=28)</span><br><span class="line">    # user.name = &quot;bobby&quot;</span><br><span class="line">    # user.age = 28</span><br><span class="line">    user.save()</span><br><span class="line"></span><br></pre></td></tr></table></figure> 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python-%E5%85%83%E7%BC%96%E7%A8%8B/" rel="tag">python 元编程</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-2021-9-22-python dict &amp; set"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/09/22/2021-9-22-python%20dict%20&%20set/"
+    >python dict &amp; set</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/09/22/2021-9-22-python%20dict%20&%20set/" class="article-date">
+  <time datetime="2021-09-22T10:12:59.000Z" itemprop="datePublished">2021-09-22</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/python/">python</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>dict 属于 mapping 类型</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">from collections.abc import Mapping, MutableMapping</span><br><span class="line">#dict属于mapping类型</span><br><span class="line"></span><br><span class="line">a = &#123;&#125;</span><br><span class="line">print (isinstance(a, MutableMapping))</span><br></pre></td></tr></table></figure>
+
+<p>dict 抽象基类</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br></pre></td><td class="code"><pre><span class="line">class MutableMapping(Mapping):</span><br><span class="line"></span><br><span class="line">    __slots__ = ()</span><br><span class="line"></span><br><span class="line">    &quot;&quot;&quot;A MutableMapping is a generic container for associating</span><br><span class="line">    key/value pairs.</span><br><span class="line"></span><br><span class="line">    This class provides concrete generic implementations of all</span><br><span class="line">    methods except for __getitem__, __setitem__, __delitem__,</span><br><span class="line">    __iter__, and __len__.</span><br><span class="line"></span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">    @abstractmethod</span><br><span class="line">    def __setitem__(self, key, value):</span><br><span class="line">        raise KeyError</span><br><span class="line"></span><br><span class="line">    @abstractmethod</span><br><span class="line">    def __delitem__(self, key):</span><br><span class="line">        raise KeyError</span><br><span class="line"></span><br><span class="line">    __marker = object()</span><br><span class="line"></span><br><span class="line">    def pop(self, key, default=__marker):</span><br><span class="line">        &#x27;&#x27;&#x27;D.pop(k[,d]) -&gt; v, remove specified key and return the corresponding value.</span><br><span class="line">          If key is not found, d is returned if given, otherwise KeyError is raised.</span><br><span class="line">        &#x27;&#x27;&#x27;</span><br><span class="line">        try:</span><br><span class="line">            value = self[key]</span><br><span class="line">        except KeyError:</span><br><span class="line">            if default is self.__marker:</span><br><span class="line">                raise</span><br><span class="line">            return default</span><br><span class="line">        else:</span><br><span class="line">            del self[key]</span><br><span class="line">            return value</span><br><span class="line"></span><br><span class="line">    def popitem(self):</span><br><span class="line">        &#x27;&#x27;&#x27;D.popitem() -&gt; (k, v), remove and return some (key, value) pair</span><br><span class="line">           as a 2-tuple; but raise KeyError if D is empty.</span><br><span class="line">        &#x27;&#x27;&#x27;</span><br><span class="line">        try:</span><br><span class="line">            key = next(iter(self))</span><br><span class="line">        except StopIteration:</span><br><span class="line">            raise KeyError from None</span><br><span class="line">        value = self[key]</span><br><span class="line">        del self[key]</span><br><span class="line">        return key, value</span><br><span class="line"></span><br><span class="line">    def clear(self):</span><br><span class="line">        &#x27;D.clear() -&gt; None.  Remove all items from D.&#x27;</span><br><span class="line">        try:</span><br><span class="line">            while True:</span><br><span class="line">                self.popitem()</span><br><span class="line">        except KeyError:</span><br><span class="line">            pass</span><br><span class="line"></span><br><span class="line">    def update(self, other=(), /, **kwds):</span><br><span class="line">        &#x27;&#x27;&#x27; D.update([E, ]**F) -&gt; None.  Update D from mapping/iterable E and F.</span><br><span class="line">            If E present and has a .keys() method, does:     for k in E: D[k] = E[k]</span><br><span class="line">            If E present and lacks .keys() method, does:     for (k, v) in E: D[k] = v</span><br><span class="line">            In either case, this is followed by: for k, v in F.items(): D[k] = v</span><br><span class="line">        &#x27;&#x27;&#x27;</span><br><span class="line">        if isinstance(other, Mapping):</span><br><span class="line">            for key in other:</span><br><span class="line">                self[key] = other[key]</span><br><span class="line">        elif hasattr(other, &quot;keys&quot;):</span><br><span class="line">            for key in other.keys():</span><br><span class="line">                self[key] = other[key]</span><br><span class="line">        else:</span><br><span class="line">            for key, value in other:</span><br><span class="line">                self[key] = value</span><br><span class="line">        for key, value in kwds.items():</span><br><span class="line">            self[key] = value</span><br><span class="line"></span><br><span class="line">    def setdefault(self, key, default=None):</span><br><span class="line">        &#x27;D.setdefault(k[,d]) -&gt; D.get(k,d), also set D[k]=d if k not in D&#x27;</span><br><span class="line">        try:</span><br><span class="line">            return self[key]</span><br><span class="line">        except KeyError:</span><br><span class="line">            self[key] = default</span><br><span class="line">        return default</span><br><span class="line"></span><br><span class="line">class Mapping(Collection):</span><br><span class="line"></span><br><span class="line">    __slots__ = ()</span><br><span class="line"></span><br><span class="line">    &quot;&quot;&quot;A Mapping is a generic container for associating key/value</span><br><span class="line">    pairs.</span><br><span class="line"></span><br><span class="line">    This class provides concrete generic implementations of all</span><br><span class="line">    methods except for __getitem__, __iter__, and __len__.</span><br><span class="line"></span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">    @abstractmethod</span><br><span class="line">    def __getitem__(self, key):</span><br><span class="line">        raise KeyError</span><br><span class="line"></span><br><span class="line">    def get(self, key, default=None):</span><br><span class="line">        &#x27;D.get(k[,d]) -&gt; D[k] if k in D, else d.  d defaults to None.&#x27;</span><br><span class="line">        try:</span><br><span class="line">            return self[key]</span><br><span class="line">        except KeyError:</span><br><span class="line">            return default</span><br><span class="line"></span><br><span class="line">    def __contains__(self, key):</span><br><span class="line">        try:</span><br><span class="line">            self[key]</span><br><span class="line">        except KeyError:</span><br><span class="line">            return False</span><br><span class="line">        else:</span><br><span class="line">            return True</span><br><span class="line"></span><br><span class="line">    def keys(self):</span><br><span class="line">        &quot;D.keys() -&gt; a set-like object providing a view on D&#x27;s keys&quot;</span><br><span class="line">        return KeysView(self)</span><br><span class="line"></span><br><span class="line">    def items(self):</span><br><span class="line">        &quot;D.items() -&gt; a set-like object providing a view on D&#x27;s items&quot;</span><br><span class="line">        return ItemsView(self)</span><br><span class="line"></span><br><span class="line">    def values(self):</span><br><span class="line">        &quot;D.values() -&gt; an object providing a view on D&#x27;s values&quot;</span><br><span class="line">        return ValuesView(self)</span><br><span class="line"></span><br><span class="line">    def __eq__(self, other):</span><br><span class="line">        if not isinstance(other, Mapping):</span><br><span class="line">            return NotImplemented</span><br><span class="line">        return dict(self.items()) == dict(other.items())</span><br><span class="line"></span><br><span class="line">    __reversed__ = None</span><br></pre></td></tr></table></figure>
+
+<p>dict 实现的方法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">class dict(MutableMapping[_KT, _VT], Generic[_KT, _VT]):</span><br><span class="line">    @overload</span><br><span class="line">    def __init__(self: dict[_KT, _VT]) -&gt; None: ...</span><br><span class="line">    @overload</span><br><span class="line">    def __init__(self: dict[str, _VT], **kwargs: _VT) -&gt; None: ...</span><br><span class="line">    @overload</span><br><span class="line">    def __init__(self, map: SupportsKeysAndGetItem[_KT, _VT], **kwargs: _VT) -&gt; None: ...</span><br><span class="line">    @overload</span><br><span class="line">    def __init__(self, iterable: Iterable[Tuple[_KT, _VT]], **kwargs: _VT) -&gt; None: ...</span><br><span class="line">    def __new__(cls: Type[_T1], *args: Any, **kwargs: Any) -&gt; _T1: ...</span><br><span class="line">    def clear(self) -&gt; None: ...</span><br><span class="line">    def copy(self) -&gt; dict[_KT, _VT]: ...</span><br><span class="line">    def popitem(self) -&gt; Tuple[_KT, _VT]: ...</span><br><span class="line">    def setdefault(self, __key: _KT, __default: _VT = ...) -&gt; _VT: ...</span><br><span class="line">    @overload</span><br><span class="line">    def update(self, __m: Mapping[_KT, _VT], **kwargs: _VT) -&gt; None: ...</span><br><span class="line">    @overload</span><br><span class="line">    def update(self, __m: Iterable[Tuple[_KT, _VT]], **kwargs: _VT) -&gt; None: ...</span><br><span class="line">    @overload</span><br><span class="line">    def update(self, **kwargs: _VT) -&gt; None: ...</span><br><span class="line">    def keys(self) -&gt; KeysView[_KT]: ...</span><br><span class="line">    def values(self) -&gt; ValuesView[_VT]: ...</span><br><span class="line">    def items(self) -&gt; ItemsView[_KT, _VT]: ...</span><br><span class="line">    @classmethod</span><br><span class="line">    @overload</span><br><span class="line">    def fromkeys(cls, __iterable: Iterable[_T], __value: None = ...) -&gt; dict[_T, Any | None]: ...</span><br><span class="line">    @classmethod</span><br><span class="line">    @overload</span><br><span class="line">    def fromkeys(cls, __iterable: Iterable[_T], __value: _S) -&gt; dict[_T, _S]: ...</span><br><span class="line">    def __len__(self) -&gt; int: ...</span><br><span class="line">    def __getitem__(self, k: _KT) -&gt; _VT: ...</span><br><span class="line">    def __setitem__(self, k: _KT, v: _VT) -&gt; None: ...</span><br><span class="line">    def __delitem__(self, v: _KT) -&gt; None: ...</span><br><span class="line">    def __iter__(self) -&gt; Iterator[_KT]: ...</span><br><span class="line">    if sys.version_info &gt;= (3, 8):</span><br><span class="line">        def __reversed__(self) -&gt; Iterator[_KT]: ...</span><br><span class="line">    def __str__(self) -&gt; str: ...</span><br><span class="line">    __hash__: None  # type: ignore</span><br><span class="line">    if sys.version_info &gt;= (3, 9):</span><br><span class="line">        def __class_getitem__(cls, item: Any) -&gt; GenericAlias: ...</span><br><span class="line">        def __or__(self, __value: Mapping[_T1, _T2]) -&gt; dict[_KT | _T1, _VT | _T2]: ...</span><br><span class="line">        def __ror__(self, __value: Mapping[_T1, _T2]) -&gt; dict[_KT | _T1, _VT | _T2]: ...</span><br><span class="line">        def __ior__(self, __value: Mapping[_KT, _VT]) -&gt; dict[_KT, _VT]: ...  # type: ignore</span><br></pre></td></tr></table></figure>
+
+<p>不建议直接继承 dict，如果有必要继承 collections 里的 user dict</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-2021-9-22-python序列类"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/09/22/2021-9-22-python%E5%BA%8F%E5%88%97%E7%B1%BB/"
+    >python序列类</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/09/22/2021-9-22-python%E5%BA%8F%E5%88%97%E7%B1%BB/" class="article-date">
+  <time datetime="2021-09-22T09:12:59.000Z" itemprop="datePublished">2021-09-22</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/python/">python</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="序列"><a href="#序列" class="headerlink" title="序列"></a>序列</h2><p>可以通过 collections.abc 观察序列相关的协议和其要实现的方法。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br></pre></td><td class="code"><pre><span class="line">class Sequence(Reversible, Collection):</span><br><span class="line"></span><br><span class="line">    &quot;&quot;&quot;All the operations on a read-only sequence.</span><br><span class="line"></span><br><span class="line">    Concrete subclasses must override __new__ or __init__,</span><br><span class="line">    __getitem__, and __len__.</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">    __slots__ = ()</span><br><span class="line"></span><br><span class="line">    @abstractmethod</span><br><span class="line">    def __getitem__(self, index):</span><br><span class="line">        raise IndexError</span><br><span class="line"></span><br><span class="line">    def __iter__(self):</span><br><span class="line">        i = 0</span><br><span class="line">        try:</span><br><span class="line">            while True:</span><br><span class="line">                v = self[i]</span><br><span class="line">                yield v</span><br><span class="line">                i += 1</span><br><span class="line">        except IndexError:</span><br><span class="line">            return</span><br><span class="line"></span><br><span class="line">    def __contains__(self, value):</span><br><span class="line">        for v in self:</span><br><span class="line">            if v is value or v == value:</span><br><span class="line">                return True</span><br><span class="line">        return False</span><br><span class="line"></span><br><span class="line">    def __reversed__(self):</span><br><span class="line">        for i in reversed(range(len(self))):</span><br><span class="line">            yield self[i]</span><br><span class="line"></span><br><span class="line">    def index(self, value, start=0, stop=None):</span><br><span class="line">        &#x27;&#x27;&#x27;S.index(value, [start, [stop]]) -&gt; integer -- return first index of value.</span><br><span class="line">           Raises ValueError if the value is not present.</span><br><span class="line"></span><br><span class="line">           Supporting start and stop arguments is optional, but</span><br><span class="line">           recommended.</span><br><span class="line">        &#x27;&#x27;&#x27;</span><br><span class="line">        if start is not None and start &lt; 0:</span><br><span class="line">            start = max(len(self) + start, 0)</span><br><span class="line">        if stop is not None and stop &lt; 0:</span><br><span class="line">            stop += len(self)</span><br><span class="line"></span><br><span class="line">        i = start</span><br><span class="line">        while stop is None or i &lt; stop:</span><br><span class="line">            try:</span><br><span class="line">                v = self[i]</span><br><span class="line">                if v is value or v == value:</span><br><span class="line">                    return i</span><br><span class="line">            except IndexError:</span><br><span class="line">                break</span><br><span class="line">            i += 1</span><br><span class="line">        raise ValueError</span><br><span class="line"></span><br><span class="line">    def count(self, value):</span><br><span class="line">        &#x27;S.count(value) -&gt; integer -- return number of occurrences of value&#x27;</span><br><span class="line">        return sum(1 for v in self if v is value or v == value)</span><br><span class="line"></span><br><span class="line">class Reversible(Iterable):</span><br><span class="line"></span><br><span class="line">    __slots__ = ()</span><br><span class="line"></span><br><span class="line">    @abstractmethod</span><br><span class="line">    def __reversed__(self):</span><br><span class="line">        while False:</span><br><span class="line">            yield None</span><br><span class="line"></span><br><span class="line">    @classmethod</span><br><span class="line">    def __subclasshook__(cls, C):</span><br><span class="line">        if cls is Reversible:</span><br><span class="line">            return _check_methods(C, &quot;__reversed__&quot;, &quot;__iter__&quot;)</span><br><span class="line">        return NotImplemented</span><br><span class="line"></span><br><span class="line">class Collection(Sized, Iterable, Container):</span><br><span class="line"></span><br><span class="line">    __slots__ = ()</span><br><span class="line"></span><br><span class="line">    @classmethod</span><br><span class="line">    def __subclasshook__(cls, C):</span><br><span class="line">        if cls is Collection:</span><br><span class="line">            return _check_methods(C,  &quot;__len__&quot;, &quot;__iter__&quot;, &quot;__contains__&quot;)</span><br><span class="line">        return NotImplemented</span><br><span class="line"></span><br><span class="line">class Sized(metaclass=ABCMeta):</span><br><span class="line"></span><br><span class="line">    __slots__ = ()</span><br><span class="line"></span><br><span class="line">    @abstractmethod</span><br><span class="line">    def __len__(self):</span><br><span class="line">        return 0</span><br><span class="line"></span><br><span class="line">    @classmethod</span><br><span class="line">    def __subclasshook__(cls, C):</span><br><span class="line">        if cls is Sized:</span><br><span class="line">            return _check_methods(C, &quot;__len__&quot;)</span><br><span class="line">        return NotImplemented</span><br><span class="line"></span><br><span class="line">class Iterable(metaclass=ABCMeta):</span><br><span class="line"></span><br><span class="line">    __slots__ = ()</span><br><span class="line"></span><br><span class="line">    @abstractmethod</span><br><span class="line">    def __iter__(self):</span><br><span class="line">        while False:</span><br><span class="line">            yield None</span><br><span class="line"></span><br><span class="line">    @classmethod</span><br><span class="line">    def __subclasshook__(cls, C):</span><br><span class="line">        if cls is Iterable:</span><br><span class="line">            return _check_methods(C, &quot;__iter__&quot;)</span><br><span class="line">        return NotImplemented</span><br><span class="line"></span><br><span class="line">class Container(metaclass=ABCMeta):</span><br><span class="line"></span><br><span class="line">    __slots__ = ()</span><br><span class="line"></span><br><span class="line">    @abstractmethod</span><br><span class="line">    def __contains__(self, x):</span><br><span class="line">        return False</span><br><span class="line"></span><br><span class="line">    @classmethod</span><br><span class="line">    def __subclasshook__(cls, C):</span><br><span class="line">        if cls is Container:</span><br><span class="line">            return _check_methods(C, &quot;__contains__&quot;)</span><br><span class="line">        return NotImplemented</span><br></pre></td></tr></table></figure>
+
+<p>如果要实现一个不可变序列的切片，按照上面的协议实现对应魔法函数即可。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">import numbers</span><br><span class="line">class Group:</span><br><span class="line">    #支持切片操作</span><br><span class="line">    def __init__(self, group_name, company_name, staffs):</span><br><span class="line">        self.group_name = group_name</span><br><span class="line">        self.company_name = company_name</span><br><span class="line">        self.staffs = staffs</span><br><span class="line"></span><br><span class="line">    def __reversed__(self):</span><br><span class="line">        self.staffs.reverse()</span><br><span class="line"></span><br><span class="line">    def __getitem__(self, item):</span><br><span class="line">        cls = type(self)</span><br><span class="line">        if isinstance(item, slice):</span><br><span class="line">            return cls(group_name=self.group_name, company_name=self.company_name, staffs=self.staffs[item])</span><br><span class="line">        elif isinstance(item, numbers.Integral):</span><br><span class="line">            return cls(group_name=self.group_name, company_name=self.company_name, staffs=[self.staffs[item]])</span><br><span class="line"></span><br><span class="line">    def __len__(self):</span><br><span class="line">        return len(self.staffs)</span><br><span class="line"></span><br><span class="line">    def __iter__(self):</span><br><span class="line">        return iter(self.staffs)</span><br><span class="line"></span><br><span class="line">    def __contains__(self, item):</span><br><span class="line">        if item in self.staffs:</span><br><span class="line">            return True</span><br><span class="line">        else:</span><br><span class="line">            return False</span><br><span class="line"></span><br><span class="line">staffs = [&quot;bobby1&quot;, &quot;imooc&quot;, &quot;bobby2&quot;, &quot;bobby3&quot;]</span><br><span class="line">group = Group(company_name=&quot;imooc&quot;, group_name=&quot;user&quot;, staffs=staffs)</span><br><span class="line">reversed(group)</span><br><span class="line">for user in group:</span><br><span class="line">    print(user)</span><br></pre></td></tr></table></figure>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-2021-9-22-python类型和对象"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/09/22/2021-9-22-python%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%AF%B9%E8%B1%A1/"
+    >python类型和对象</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/09/22/2021-9-22-python%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%AF%B9%E8%B1%A1/" class="article-date">
+  <time datetime="2021-09-22T08:12:59.000Z" itemprop="datePublished">2021-09-22</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/python/">python</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h2><p>python 的多态不同于 java，并不需要继承，只要实现同一个方法名就可以。语言层面上的多态，看起来像鸭子它就是鸭子，不需要特别申明变量类型，只需要给对象实现特定的接口或者魔法函数它就有特定的特性。</p>
+<h2 id="抽象基类-Abstracted-Base-Class"><a href="#抽象基类-Abstracted-Base-Class" class="headerlink" title="抽象基类(Abstracted Base Class)"></a>抽象基类(Abstracted Base Class)</h2><p>相当于 java 里的 interface 接口，不能被实例化。</p>
+<p>使用场景</p>
+<ul>
+<li>判定对象类型</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">from collections.abc import Sized</span><br><span class="line">isinstance(x, Sized)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>强制子类必须实现某些方法</li>
+</ul>
+<h2 id="对象引用"><a href="#对象引用" class="headerlink" title="对象引用"></a>对象引用</h2><p>python 的对象本质上是一个指针，可以理解为一个便利贴，可以贴在任何变量上。变量创建时先在堆里生成对象，然后变量指向对象。指针大小是固定的，变量没有类型这个概念。</p>
+<p>del 并不是垃圾回收，python 中的垃圾回收是在计数器到 0 时回收（引用计数）</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python-%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%AF%B9%E8%B1%A1/" rel="tag">python 类型和对象</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-2021-9-22-python魔法函数"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/09/22/2021-9-22-python%E9%AD%94%E6%B3%95%E5%87%BD%E6%95%B0/"
+    >python魔法函数</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/09/22/2021-9-22-python%E9%AD%94%E6%B3%95%E5%87%BD%E6%95%B0/" class="article-date">
+  <time datetime="2021-09-22T06:12:59.000Z" itemprop="datePublished">2021-09-22</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/python/">python</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>理解魔法函数对理解 python 的设计理念非常重要，python 是基于协议的，协议基于魔法函数在类里的实现。在往类里加入魔法函数之后，类会增加某些类型特性。</p>
+<p><a target="_blank" rel="noopener" href="https://rszalski.github.io/magicmethods/">magic funtion</a></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python-%E9%AD%94%E6%B3%95%E5%87%BD%E6%95%B0/" rel="tag">python 魔法函数</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-2021-2-5-Xpath笔记"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/02/05/2021-2-5-Xpath%E7%AC%94%E8%AE%B0/"
+    >Xpath学习笔记</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/02/05/2021-2-5-Xpath%E7%AC%94%E8%AE%B0/" class="article-date">
+  <time datetime="2021-02-05T03:14:59.000Z" itemprop="datePublished">2021-02-05</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/tech/">tech</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>XPATH -&gt; XML path language</p>
+<h3 id="Node"><a href="#Node" class="headerlink" title="Node"></a>Node</h3><p>In XPath, there are seven kinds of nodes: element, attribute, text, namespace, processing-instruction, comment, and document nodes.</p>
+<p>XML documents are treated as trees of nodes. The topmost element of the tree is called the root element.</p>
+<h3 id="Relationship-of-Nodes"><a href="#Relationship-of-Nodes" class="headerlink" title="Relationship of Nodes"></a>Relationship of Nodes</h3><ul>
+<li>Parent</li>
+</ul>
+<p>Each element and attribute has one parent.</p>
+<ul>
+<li>Children</li>
+</ul>
+<p>Element nodes may have zero, one or more children.</p>
+<ul>
+<li>Siblings</li>
+</ul>
+<p>Nodes that have the same parent.</p>
+<ul>
+<li>Ancestors</li>
+</ul>
+<p>A node’s parent, parent’s parent, etc.</p>
+<ul>
+<li>Descendants</li>
+</ul>
+<p>A node’s children, children’s children, etc.</p>
+<h3 id="Selecting-nodes"><a href="#Selecting-nodes" class="headerlink" title="Selecting nodes"></a>Selecting nodes</h3><p>XPath uses path expressions to select nodes in an XML document. The node is selected by following a path or steps. The most useful path expressions are listed below:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Expression	        Description</span><br><span class="line">nodename	        Selects all nodes with the name &quot;nodename&quot;</span><br><span class="line">/	                Selects from the root node</span><br><span class="line">//	                Selects nodes in the document from the current node that match the selection no matter where they are</span><br><span class="line">.	                Selects the current node</span><br><span class="line">..	                Selects the parent of the current node</span><br><span class="line">@	                Selects attributes</span><br></pre></td></tr></table></figure>
+
+<p>Examples</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">bookstore	        Selects all nodes with the name &quot;bookstore&quot;</span><br><span class="line">/bookstore	        Selects the root element bookstore</span><br><span class="line">bookstore/book	    Selects all book elements that are children of bookstore</span><br><span class="line">//book	Selects     all book elements no matter where they are in the document</span><br><span class="line">bookstore//book	    Selects all book elements that are descendant of the bookstore element, no matter where they are under the bookstore element</span><br><span class="line">//@lang	Selects     all attributes that are named lang</span><br></pre></td></tr></table></figure>
+
+<h3 id="Xpath-Axes"><a href="#Xpath-Axes" class="headerlink" title="Xpath Axes"></a>Xpath Axes</h3><p><a target="_blank" rel="noopener" href="https://www.w3schools.com/xml/xpath_syntax.asp">https://www.w3schools.com/xml/xpath_syntax.asp</a></p>
+<h3 id="Contains-Siblings"><a href="#Contains-Siblings" class="headerlink" title="Contains, Siblings"></a>Contains, Siblings</h3><p><a target="_blank" rel="noopener" href="https://www.guru99.com/using-contains-sbiling-ancestor-to-find-element-in-selenium.html">https://www.guru99.com/using-contains-sbiling-ancestor-to-find-element-in-selenium.html</a></p>
+<h3 id="Simple-online-Xpath-test"><a href="#Simple-online-Xpath-test" class="headerlink" title="Simple online Xpath test"></a>Simple online Xpath test</h3><p><a target="_blank" rel="noopener" href="http://www.xpathtester.com/xpath/76bb0bca-1896-43b7-8312-54f924a98a89">http://www.xpathtester.com/xpath/76bb0bca-1896-43b7-8312-54f924a98a89</a></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/xpath/" rel="tag">xpath</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-2018-11-03-Louvre"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2018/11/03/2018-11-03-Louvre/"
+    >Louvre</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2018/11/03/2018-11-03-Louvre/" class="article-date">
+  <time datetime="2018-11-03T06:34:59.000Z" itemprop="datePublished">2018-11-03</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/personal/">personal</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>18 年 11 月 2 日第一次参观卢浮宫，带给自己的绝不仅仅是震撼，法国人民保护历史的观念可能早从拿破仑时代就有开始，短短几百年，卢浮宫已经收猎了来自法国本土，欧洲，埃及，希腊，近东等地的珍贵文物，这些文物没有因为战争而被毁坏，也没有因为中国文化大革命这般把自己的历史全盘抹去，讽刺的是中国三十年河东，三十年又河西，一会要全面反传统，一面又要文化传播弘扬主旋律，一味建什么孔子学院，试问一个民族如果连自己都不坚持或信任自己的体制或者文化，又谈怎么宣传，皇帝的新装在中国活生生上演。</p>
+<p>这个时代活脱脱是一个闹剧，一切历史都可以被赢家粉饰。我在意识到卢浮宫到底是多么宏伟的一霎那泪水差点蹦出来，之前对法国人不甚了解，他们其实很会自嘲，也有很强的精神领域，浪漫或者艺术只是表面，他们有着对人类文明的捍卫观念，从某个角度上来说，他们的年轻人相比其他国家的年轻人更可能发现人为什么活着。毕竟在欧洲有太多机会接触到不同的文化和事物，不容易对世界有那种非黑即白的认知，世界太大，荣华富贵都是过往云烟，一味的物质其实真的只是浅薄和无知，当我看到卢浮宫有着世界文明那般程度的浓缩之后，一霎那我用一天的时间走完了世界几千年。也罢，对酒当歌，人生几何，作为一个人更需要明白你自己为什么活着，能不能做出一些贡献，有自己的精神场，才是我现期的要务了罢。</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%97%A5%E8%AE%B0/" rel="tag">日记</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-2017-12-27-断舍离"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2017/12/27/2017-12-27-%E6%96%AD%E8%88%8D%E7%A6%BB/"
+    >断舍离</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2017/12/27/2017-12-27-%E6%96%AD%E8%88%8D%E7%A6%BB/" class="article-date">
+  <time datetime="2017-12-27T06:34:59.000Z" itemprop="datePublished">2017-12-27</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/personal/">personal</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>生活在一个物质亢余的年代是辛苦的，所有人都拼命得到物质，人与人评价的标准无非是金钱，女人，地位，这些标准面目可憎，令人厌恶，每次我回到家姥姥都滔滔不绝地说我太瘦要多吃饭，穿的太少赶紧买衣服，我知道她本质上是为我好；可这些东西与她有什么关系？吃多少穿什么是我自己的事情，与她有什么关系？难道我不知道自己喜欢什么生活方式？中国人的家庭最令我讨厌的是总有人喜欢对他人生活指手画脚，这些点让我拼命的想逃离家庭的束缚。</p>
+<p>现代社会难能可贵的是断舍离，抛弃一切不是必须的东西，享受极简主义的生活方式，落实到家庭生活中 80%都是些鸡毛蒜皮的琐事，而我们却被这些琐事占据了大量的精力心神，要享受纯粹的生活必须放弃亢余的物质，扔掉 80%不常用的衣服，物件。</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%97%A5%E8%AE%B0/" rel="tag">日记</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-2017-12-24-终身学习读书笔记"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2017/12/24/2017-12-24-%E7%BB%88%E8%BA%AB%E5%AD%A6%E4%B9%A0%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"
+    >终身学习读书笔记</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2017/12/24/2017-12-24-%E7%BB%88%E8%BA%AB%E5%AD%A6%E4%B9%A0%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" class="article-date">
+  <time datetime="2017-12-24T06:34:59.000Z" itemprop="datePublished">2017-12-24</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/personal/">personal</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="教育模式"><a href="#教育模式" class="headerlink" title="教育模式"></a>教育模式</h2><p>教育制度分为三种，第一种所谓应试教育，运用考试的力量迫使学生学习，这种方式学生的参与性较低，但却是最公平的方式，无论是寒门还是贵子都要参与统一的考试，这种方式着重把学生培育成一件工具，或是一台机器，即培养所谓对社会有用的人，或有用的工具。</p>
+<p>第二种为素质教育，这其实是着重培养中产阶级的教育方式，除学习之外会要求学生有很多的兴趣爱好，美国主要倡导的即这种方式，常青藤常常要求学生积极参与社会活动，体育运动，这些贵族运动其实无形之中把贫穷的学习拒之门外；比较与中国阶级流动的减缓停滞，美国形成了阶级的固化，如果从小没有相应的环境培养各类兴趣爱好很好进入好的大学。</p>
+<p>素质教育的核心是成为一个更好的人，本质上成为更好的自己是为了被利用，而第三种，也是最高层的教育模式却对此不屑一顾，他们只需要利用管理他人，相比前两种模式第三种教育只注重培养学生做决策的能力，他们培养出的学生可以不会做 ppt 也可以不会 excel，他们只需要在正确的时机做出正确的决定。在这种教育模式下，教授会对学生比较宽松，他们会要求学生无论是好是坏，为自己所做出的决定负责。</p>
+<h2 id="知行合一"><a href="#知行合一" class="headerlink" title="知行合一"></a>知行合一</h2><p>在互联网时代下，地位背景金钱等等都变得不再重要，唯一重要的东西是认知，有钱并不能保证你赚更多的钱，有高人一等的认知会在这个世纪胜出，一个行业的更迭可能只有十几年，旧的知识体系在新的时代下经受不住挑战，要胜出就要不断改进自己的认知结构，终身学习，先提升认识确定超人一等的目标，再用行动和执行力妥善跟上自己思想的步伐，言必至，行必果。</p>
+<p>认知升级的途径：</p>
+<p>1） 承认自己的无知，承认自己不知道 （万物皆有裂痕，那是光照进来的地方）<br>2） 采取行动，把知道变成行动<br>3） 永远和比你知道的多的人在一起</p>
+<h2 id="一只眼死两只眼活"><a href="#一只眼死两只眼活" class="headerlink" title="一只眼死两只眼活"></a>一只眼死两只眼活</h2><p>培养两种以上的禀赋，在一个领域做到前 1%是非常困难的，可是在两个不同的领域做到前 10%就不是那么难，考虑到知识的更新换代，有两种不同的禀赋相长相承有更有助于职业的发展和个人的进步。</p>
+<p>在查理芒格的穷查理宝典中更强调了这一点，查理甚至建议一百种左右的跨学科学习。</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%97%A5%E8%AE%B0/" rel="tag">日记</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+  </article>
+  
+
+  
+  <nav class="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
+  </nav>
+  
+</section>
+</div>
+
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2019-2022
+        <i class="ri-heart-fill heart_icon"></i> Chenhao Li
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+      <li>
+          <img src="/images/beian.png"></img>
+          <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=01234567890123" target="_black" rel="nofollow">浙公网安备01234567890123号</a>
+      </li>
+        
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="Chenhao Li"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" target="_blank" rel="noopener" href="https://awesometony520.lofter.com/">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">链接</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+ <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.staticfile.org/mathjax/2.7.7/MathJax.js"></script>
+<script src="https://cdn.staticfile.org/mathjax/2.7.7/config/TeX-AMS-MML_HTMLorMML-full.js"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true,
+  };
+</script>
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"display":{"position":"right","width":80,"height":160},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+
+</html>

@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Chenhao Li</title>
+  <icon>https://renshou753.github.io/icon.png</icon>
+  
+  <link href="https://renshou753.github.io/atom.xml" rel="self"/>
+  
+  <link href="https://renshou753.github.io/"/>
+  <updated>2022-06-04T05:26:08.000Z</updated>
+  <id>https://renshou753.github.io/</id>
+  
+  <author>
+    <name>Chenhao Li</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>python迭代协议</title>
+    <link href="https://renshou753.github.io/2021/09/25/2021-9-25-python%E8%BF%AD%E4%BB%A3%E5%8D%8F%E8%AE%AE/"/>
+    <id>https://renshou753.github.io/2021/09/25/2021-9-25-python%E8%BF%AD%E4%BB%A3%E5%8D%8F%E8%AE%AE/</id>
+    <published>2021-09-25T13:12:59.000Z</published>
+    <updated>2022-06-04T05:26:08.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="python" scheme="https://renshou753.github.io/categories/python/"/>
+    
+    
+    <category term="python" scheme="https://renshou753.github.io/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python元编程</title>
+    <link href="https://renshou753.github.io/2021/09/23/2021-9-23-python%E5%85%83%E7%BC%96%E7%A8%8B/"/>
+    <id>https://renshou753.github.io/2021/09/23/2021-9-23-python%E5%85%83%E7%BC%96%E7%A8%8B/</id>
+    <published>2021-09-23T15:12:59.000Z</published>
+    <updated>2022-06-04T05:26:08.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="python" scheme="https://renshou753.github.io/categories/python/"/>
+    
+    
+    <category term="python 元编程" scheme="https://renshou753.github.io/tags/python-%E5%85%83%E7%BC%96%E7%A8%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python dict &amp; set</title>
+    <link href="https://renshou753.github.io/2021/09/22/2021-9-22-python%20dict%20&amp;%20set/"/>
+    <id>https://renshou753.github.io/2021/09/22/2021-9-22-python%20dict%20&amp;%20set/</id>
+    <published>2021-09-22T10:12:59.000Z</published>
+    <updated>2022-06-04T05:26:08.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="python" scheme="https://renshou753.github.io/categories/python/"/>
+    
+    
+    <category term="python" scheme="https://renshou753.github.io/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python序列类</title>
+    <link href="https://renshou753.github.io/2021/09/22/2021-9-22-python%E5%BA%8F%E5%88%97%E7%B1%BB/"/>
+    <id>https://renshou753.github.io/2021/09/22/2021-9-22-python%E5%BA%8F%E5%88%97%E7%B1%BB/</id>
+    <published>2021-09-22T09:12:59.000Z</published>
+    <updated>2022-06-04T05:26:08.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="python" scheme="https://renshou753.github.io/categories/python/"/>
+    
+    
+    <category term="python" scheme="https://renshou753.github.io/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python类型和对象</title>
+    <link href="https://renshou753.github.io/2021/09/22/2021-9-22-python%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%AF%B9%E8%B1%A1/"/>
+    <id>https://renshou753.github.io/2021/09/22/2021-9-22-python%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%AF%B9%E8%B1%A1/</id>
+    <published>2021-09-22T08:12:59.000Z</published>
+    <updated>2022-06-04T05:26:08.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="python" scheme="https://renshou753.github.io/categories/python/"/>
+    
+    
+    <category term="python 类型和对象" scheme="https://renshou753.github.io/tags/python-%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%AF%B9%E8%B1%A1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python魔法函数</title>
+    <link href="https://renshou753.github.io/2021/09/22/2021-9-22-python%E9%AD%94%E6%B3%95%E5%87%BD%E6%95%B0/"/>
+    <id>https://renshou753.github.io/2021/09/22/2021-9-22-python%E9%AD%94%E6%B3%95%E5%87%BD%E6%95%B0/</id>
+    <published>2021-09-22T06:12:59.000Z</published>
+    <updated>2022-06-04T05:26:08.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="python" scheme="https://renshou753.github.io/categories/python/"/>
+    
+    
+    <category term="python 魔法函数" scheme="https://renshou753.github.io/tags/python-%E9%AD%94%E6%B3%95%E5%87%BD%E6%95%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Xpath学习笔记</title>
+    <link href="https://renshou753.github.io/2021/02/05/2021-2-5-Xpath%E7%AC%94%E8%AE%B0/"/>
+    <id>https://renshou753.github.io/2021/02/05/2021-2-5-Xpath%E7%AC%94%E8%AE%B0/</id>
+    <published>2021-02-05T03:14:59.000Z</published>
+    <updated>2022-06-04T05:26:08.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="tech" scheme="https://renshou753.github.io/categories/tech/"/>
+    
+    
+    <category term="xpath" scheme="https://renshou753.github.io/tags/xpath/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Louvre</title>
+    <link href="https://renshou753.github.io/2018/11/03/2018-11-03-Louvre/"/>
+    <id>https://renshou753.github.io/2018/11/03/2018-11-03-Louvre/</id>
+    <published>2018-11-03T06:34:59.000Z</published>
+    <updated>2022-06-04T05:26:08.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="personal" scheme="https://renshou753.github.io/categories/personal/"/>
+    
+    
+    <category term="日记" scheme="https://renshou753.github.io/tags/%E6%97%A5%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>断舍离</title>
+    <link href="https://renshou753.github.io/2017/12/27/2017-12-27-%E6%96%AD%E8%88%8D%E7%A6%BB/"/>
+    <id>https://renshou753.github.io/2017/12/27/2017-12-27-%E6%96%AD%E8%88%8D%E7%A6%BB/</id>
+    <published>2017-12-27T06:34:59.000Z</published>
+    <updated>2022-06-04T05:26:08.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="personal" scheme="https://renshou753.github.io/categories/personal/"/>
+    
+    
+    <category term="日记" scheme="https://renshou753.github.io/tags/%E6%97%A5%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>终身学习读书笔记</title>
+    <link href="https://renshou753.github.io/2017/12/24/2017-12-24-%E7%BB%88%E8%BA%AB%E5%AD%A6%E4%B9%A0%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    <id>https://renshou753.github.io/2017/12/24/2017-12-24-%E7%BB%88%E8%BA%AB%E5%AD%A6%E4%B9%A0%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</id>
+    <published>2017-12-24T06:34:59.000Z</published>
+    <updated>2022-06-04T05:26:08.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="personal" scheme="https://renshou753.github.io/categories/personal/"/>
+    
+    
+    <category term="日记" scheme="https://renshou753.github.io/tags/%E6%97%A5%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>reckless</title>
+    <link href="https://renshou753.github.io/2017/11/19/2017-11-09-reckless/"/>
+    <id>https://renshou753.github.io/2017/11/19/2017-11-09-reckless/</id>
+    <published>2017-11-19T06:34:59.000Z</published>
+    <updated>2022-06-04T05:26:08.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="personal" scheme="https://renshou753.github.io/categories/personal/"/>
+    
+    
+    <category term="日记" scheme="https://renshou753.github.io/tags/%E6%97%A5%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Review</title>
+    <link href="https://renshou753.github.io/2017/11/17/2017-11-17-Review/"/>
+    <id>https://renshou753.github.io/2017/11/17/2017-11-17-Review/</id>
+    <published>2017-11-17T06:34:59.000Z</published>
+    <updated>2022-06-04T05:26:08.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="personal" scheme="https://renshou753.github.io/categories/personal/"/>
+    
+    
+    <category term="日记" scheme="https://renshou753.github.io/tags/%E6%97%A5%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>reflect</title>
+    <link href="https://renshou753.github.io/2016/09/27/2016-09-27-Reflect/"/>
+    <id>https://renshou753.github.io/2016/09/27/2016-09-27-Reflect/</id>
+    <published>2016-09-27T06:34:59.000Z</published>
+    <updated>2022-06-04T05:47:08.438Z</updated>
+    
+    
+    <summary type="html">Here&#39;s something encrypted, password is required to continue reading.</summary>
+    
+    
+    
+    <category term="personal" scheme="https://renshou753.github.io/categories/personal/"/>
+    
+    
+    <category term="日记" scheme="https://renshou753.github.io/tags/%E6%97%A5%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MARKDOWN学习笔记</title>
+    <link href="https://renshou753.github.io/2014/09/05/2014-09-05-MARKDOWN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <id>https://renshou753.github.io/2014/09/05/2014-09-05-MARKDOWN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
+    <published>2014-09-05T06:34:59.000Z</published>
+    <updated>2022-06-04T05:26:08.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="tech" scheme="https://renshou753.github.io/categories/tech/"/>
+    
+    
+    <category term="markdown" scheme="https://renshou753.github.io/tags/markdown/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>考试</title>
+    <link href="https://renshou753.github.io/2014/07/01/2014-07-01-%E8%80%83%E8%AF%95/"/>
+    <id>https://renshou753.github.io/2014/07/01/2014-07-01-%E8%80%83%E8%AF%95/</id>
+    <published>2014-07-01T06:34:59.000Z</published>
+    <updated>2022-06-04T05:26:08.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="personal" scheme="https://renshou753.github.io/categories/personal/"/>
+    
+    
+    <category term="日记" scheme="https://renshou753.github.io/tags/%E6%97%A5%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>bye_bye</title>
+    <link href="https://renshou753.github.io/2013/03/10/2013-03-10-Bye%20Bye/"/>
+    <id>https://renshou753.github.io/2013/03/10/2013-03-10-Bye%20Bye/</id>
+    <published>2013-03-10T06:34:59.000Z</published>
+    <updated>2022-06-04T05:43:29.000Z</updated>
+    
+    
+    <summary type="html">Here&#39;s something encrypted, password is required to continue reading.</summary>
+    
+    
+    
+    <category term="personal" scheme="https://renshou753.github.io/categories/personal/"/>
+    
+    
+    <category term="日记" scheme="https://renshou753.github.io/tags/%E6%97%A5%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>性格测试</title>
+    <link href="https://renshou753.github.io/2012/08/03/2012-08-03-%E6%80%A7%E6%A0%BC%E6%B5%8B%E8%AF%95/"/>
+    <id>https://renshou753.github.io/2012/08/03/2012-08-03-%E6%80%A7%E6%A0%BC%E6%B5%8B%E8%AF%95/</id>
+    <published>2012-08-03T06:34:59.000Z</published>
+    <updated>2022-06-04T05:26:08.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="personal" scheme="https://renshou753.github.io/categories/personal/"/>
+    
+    
+    <category term="日记" scheme="https://renshou753.github.io/tags/%E6%97%A5%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>矛盾</title>
+    <link href="https://renshou753.github.io/2010/05/10/2010-05-10-%E7%9F%9B%E7%9B%BE/"/>
+    <id>https://renshou753.github.io/2010/05/10/2010-05-10-%E7%9F%9B%E7%9B%BE/</id>
+    <published>2010-05-10T06:34:59.000Z</published>
+    <updated>2022-06-04T05:26:08.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="personal" scheme="https://renshou753.github.io/categories/personal/"/>
+    
+    
+    <category term="日记" scheme="https://renshou753.github.io/tags/%E6%97%A5%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>封闭2</title>
+    <link href="https://renshou753.github.io/2010/05/03/2010-05-03-%E5%B0%81%E9%97%AD2/"/>
+    <id>https://renshou753.github.io/2010/05/03/2010-05-03-%E5%B0%81%E9%97%AD2/</id>
+    <published>2010-05-03T06:34:59.000Z</published>
+    <updated>2022-06-04T05:39:17.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="personal" scheme="https://renshou753.github.io/categories/personal/"/>
+    
+    
+    <category term="日记" scheme="https://renshou753.github.io/tags/%E6%97%A5%E8%AE%B0/"/>
+    
+  </entry>
+  
+</feed>
